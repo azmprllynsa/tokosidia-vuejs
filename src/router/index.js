@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Search from '../views/Search.vue'
+import Home from '@/views/Home.vue'
+import Search from '@/views/Search.vue'
+import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
 
 Vue.use(VueRouter)
@@ -18,6 +19,10 @@ const routes = [
     component: Search
   },
   {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
     path: '/p',
     name: 'Category',
     component: Category
