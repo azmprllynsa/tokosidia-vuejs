@@ -23,6 +23,7 @@ const routes = [
     name: 'Cart',
     component: Cart
   },
+  {
     path: '/p',
     name: 'Category',
     component: Category
