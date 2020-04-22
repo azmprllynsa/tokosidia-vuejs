@@ -11,6 +11,6 @@
 
 .wrapper {
   width: 1200px;
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
 </style>
