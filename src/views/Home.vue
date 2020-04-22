@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home wrapper">
     <h1>Halaman Home</h1>
   </div>
 </template>
