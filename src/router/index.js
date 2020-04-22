@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
+import People from '@/views/People.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/p',
     name: 'Category',
     component: Category
+  },
+  {
+    path: '/people/1',
+    name: 'People',
+    component: People
   }
 ]
 
