@@ -49,6 +49,23 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: transparent;
+	border: 1px solid black;
+	cursor: pointer;
+	outline: none;
+}
+input {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	&::placeholder {
+		color: #adadad;
+	}
+}
+* {
+	box-sizing: border-box;
+}
 
 /* 
   End of Reset CSS by http://meyerweb.com/eric/tools/css/reset/ 
