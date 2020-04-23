@@ -2,6 +2,9 @@
   <div id="tokosidia">
     <NavbarHome />
     <router-view/>
+    <footer>
+      <div>FOOTER nya NYUSUL GAES</div>
+    </footer>
   </div>
 </template>
 
@@ -21,6 +24,14 @@ export default {
 
 .wrapper {
   width: 1200px;
-  margin: 105px auto 0;
+  margin: 85px auto 0;
+}
+
+footer {
+  padding: 250px 600px;
+  div {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 </style>

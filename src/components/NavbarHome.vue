@@ -419,6 +419,182 @@
                   </div>
                 </div>
               </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
+              <div class="list-sub-category">
+                <div class="list-sub-category__head">
+                  <div class="semi-a">
+                    <router-link to="/">Arsitektur & Desain</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Bangunan</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Codes Standar</router-link>
+                  </div>
+                </div>
+                <div class="list-sub-category__body">
+                  <div class="semi-a">
+                    <router-link to="/">Buku Memasak</router-link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -518,14 +694,16 @@ export default {
           }
         }
         .sub-category__body {
-          display: flex;
-          flex-direction: column;
-          align-content: flex-start;
-          flex-wrap: wrap;
-          max-height: 1000px;
+          column-count: 5;
+          column-gap: 10px;
+          column-fill: balance;
+          // display: flex;
+          // flex-direction: column;
+          // align-content: flex-start;
+          // flex-wrap: wrap;
+          // max-height: 1000px;
           overflow: hidden;
           .list-sub-category {
-            width: 20%;
             margin-bottom: 20px;
             .semi-a {
               margin: 10px 0;
