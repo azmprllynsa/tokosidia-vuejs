@@ -1,8 +1,8 @@
 <template>
   <div id="tokosidia">
-    <NavbarHome />
+    <NavbarHome v-if="$route.name !== 'Login'" />
     <router-view/>
-    <Footer />
+    <Footer v-if="$route.name !== 'Login'" />
   </div>
 </template>
 

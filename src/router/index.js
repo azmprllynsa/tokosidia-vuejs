@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
+import LoginPage from '@/views/auth/LoginPage.vue'
 import StoreDetail from '@/views/StoreDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
@@ -19,6 +20,14 @@ const routes = [
     component: Home,
     meta: {
       title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginPage,
+    meta: {
+      title: 'Masuk / Login | Tokosidia'
     }
   },
   {
