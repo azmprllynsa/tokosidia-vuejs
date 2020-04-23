@@ -13,6 +13,14 @@ import NavbarHome from '@/components/NavbarHome.vue'
 
 export default {
   name: 'Home',
+  watch: {
+    $route: {
+      handler: (to) => {
+        document.title = to.meta.title || 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+      },
+      immediate: true
+    }
+  },
   components: {
     NavbarHome
   }

@@ -15,42 +15,66 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+    }
   },
   {
     path: '/search',
     name: 'Search',
-    component: Search
+    component: Search,
+    meta: {
+      title: 'Jual | Tokosidia'
+    }
   },
   {
     path: '/cart',
     name: 'Cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      title: 'Keranjang | Tokosidia'
+    }
   },
   {
     path: '/p',
     name: 'Category',
-    component: Category
+    component: Category,
+    meta: {
+      title: 'Daftar Produk | Tokosidia'
+    }
   },
   {
     path: '/list-category',
     name: 'Listcategory',
-    component: Listcategory
+    component: Listcategory,
+    meta: {
+      title: 'Jual | Tokosidia'
+    }
   },
   {
     path: '/people/:id',
     name: 'People',
-    component: People
+    component: People,
+    meta: {
+      title: 'User Detail | Tokosidia'
+    }
   },
   {
     path: '/people/:id/edit',
     name: 'PeopleEdit',
-    component: PeopleEdit
+    component: PeopleEdit,
+    meta: {
+      title: 'Ubah Profil | Tokosidia'
+    }
   },
   {
     path: '/:storename',
     name: 'Store Detail',
-    component: StoreDetail
+    component: StoreDetail,
+    meta: {
+      title: 'Toko Detail | Tokosidia'
+    }
   }
 ]
 
