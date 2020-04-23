@@ -5,6 +5,7 @@ import StoreDetail from '@/views/StoreDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
+import Listcategory from '@/views/Listcategory.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/p',
     name: 'Category',
     component: Category
+  },
+  {
+    path: '/list-category',
+    name: 'Listcategory',
+    component: Listcategory
   },
   {
     path: '/:storename',
