@@ -95,7 +95,7 @@ hr.thinhr {
 }
 .summary {
   position: sticky;
-  top: 0;
+  top: 100px;
   height: 244px;
   width: 350px;
   padding: 16px;

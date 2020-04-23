@@ -5,6 +5,8 @@ import StoreDetail from '@/views/StoreDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
+import People from '@/views/People.vue'
+import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
 
 Vue.use(VueRouter)
@@ -13,34 +15,66 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+    }
   },
   {
     path: '/search',
     name: 'Search',
-    component: Search
+    component: Search,
+    meta: {
+      title: 'Jual | Tokosidia'
+    }
   },
   {
     path: '/cart',
     name: 'Cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      title: 'Keranjang | Tokosidia'
+    }
   },
   {
-    path: '/category',
-    // name: 'Category',
+    path: '/p',
+    name: 'Category',
     component: Category,
-    children: [
-      {
-        path: '/category/list-category',
-        // name: 'Listcategory',
-        component: Listcategory
-      }
-    ]
+    meta: {
+      title: 'Daftar Produk | Tokosidia'
+    }
+  },
+  {
+    path: '/p/list-category',
+    name: 'Listcategory',
+    component: Listcategory,
+    meta: {
+      title: 'Jual | Tokosidia'
+    }
+  },
+  {
+    path: '/people/:id',
+    name: 'People',
+    component: People,
+    meta: {
+      title: 'User Detail | Tokosidia'
+    }
+  },
+  {
+    path: '/people/:id/edit',
+    name: 'PeopleEdit',
+    component: PeopleEdit,
+    meta: {
+      title: 'Ubah Profil | Tokosidia'
+    }
   },
   {
     path: '/:storename',
     name: 'Store Detail',
-    component: StoreDetail
+    component: StoreDetail,
+    meta: {
+      title: 'Toko Detail | Tokosidia'
+    }
   }
 ]
 
