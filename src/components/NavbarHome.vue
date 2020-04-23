@@ -694,15 +694,23 @@ export default {
           }
         }
         .sub-category__body {
-          column-count: 5;
-          column-gap: 10px;
-          column-fill: balance;
-          // display: flex;
-          // flex-direction: column;
-          // align-content: flex-start;
-          // flex-wrap: wrap;
-          // max-height: 1000px;
+          display: flex;
+          flex-direction: column;
+          align-content: flex-start;
+          flex-wrap: wrap;
+          max-height: 1000px;
           overflow: hidden;
+          .list-sub-category {
+            width: 20%;
+            column-count: 5;
+            column-gap: 10px;
+            column-fill: balance;
+            // display: flex;
+            // flex-direction: column;
+            // align-content: flex-start;
+            // flex-wrap: wrap;
+            // max-height: 1000px;
+            overflow: hidden;
           .list-sub-category {
             margin-bottom: 20px;
             .semi-a {
