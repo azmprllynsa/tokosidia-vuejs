@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
+import StoreDetail from '@/views/StoreDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
 import People from '@/views/People.vue'
 import PeopleEdit from '@/views/PeopleEdit.vue'
+import Listcategory from '@/views/Listcategory.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,11 @@ const routes = [
     component: Category
   },
   {
+    path: '/list-category',
+    name: 'Listcategory',
+    component: Listcategory
+  },
+  {
     path: '/people/:id',
     name: 'People',
     component: People
@@ -39,6 +46,11 @@ const routes = [
     path: '/people/:id/edit',
     name: 'PeopleEdit',
     component: PeopleEdit
+  },
+  {
+    path: '/:storename',
+    name: 'Store Detail',
+    component: StoreDetail
   }
 ]
 
