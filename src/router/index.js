@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'
 import StoreDetail from '@/views/StoreDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
+import Shipment from '@/views/Shipment.vue'
 import Category from '@/views/Category.vue'
 import People from '@/views/People.vue'
 import PeopleEdit from '@/views/PeopleEdit.vue'
@@ -35,6 +36,16 @@ const routes = [
     meta: {
       title: 'Keranjang | Tokosidia'
     }
+
+  },
+  {
+    path: '/cart/shipment',
+    name: 'Shipment',
+    component: Shipment,
+    meta: {
+      title: 'Checkout | Tokosidia'
+    }
+
   },
   {
     path: '/p',
