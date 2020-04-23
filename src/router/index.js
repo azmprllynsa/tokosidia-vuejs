@@ -26,14 +26,16 @@ const routes = [
     component: Cart
   },
   {
-    path: '/p',
-    name: 'Category',
-    component: Category
-  },
-  {
-    path: '/list-category',
-    name: 'Listcategory',
-    component: Listcategory
+    path: '/category',
+    // name: 'Category',
+    component: Category,
+    children: [
+      {
+        path: '/category/list-category',
+        // name: 'Listcategory',
+        component: Listcategory
+      }
+    ]
   },
   {
     path: '/:storename',
