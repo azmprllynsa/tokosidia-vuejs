@@ -4,46 +4,45 @@
       <div>
         <div class="checkall-container w-full flex-row justify-between items-center">
           <div class=" flex-row justify-center items-center">
-            <label class="container checkall-text ml-10 flex-row items-center"> Choose All Product
+            <label class="container checkall-text ml-10 flex-row items-center"> Pilih Semua Produk
               <input type="checkbox">
-              <span class="checkmark"></span>
+              <span @click="checkmark = !checkmark" class="checkmark"></span>
             </label>
           </div>
           <div>
-            <button class="checkall-remove">Remove</button>
+            <button :class="checkmark ? '' : 'hidden'" class="checkall-remove">Hapus</button>
           </div>
         </div>
         <hr class="boldhr">
       </div>
       <CartItem v-for="item in 10" :key="item.id"/>
     </div>
-    <div class="w-40 flex-row justify-center">
-      <div class="summary flex-col">
-        <h3 class="text-bold">Shopping Summary</h3>
-        <hr class="w-full mt-10 thinhr">
-        <div class="mt-10 flex-row justify-between">
-          <p class="text-gray">Total Price</p>
-          <p class="text-bold">Rp. 1.000.000</p>
-        </div>
-        <button class="mt-10 py-10 btn-buy text-white text-bold">Buy</button>
-        <button class="mt-10 py-10 btn-promo text-green">Use promo from Tokopedia</button>
-      </div>
+    <div class="w-40 flex-col justify-start items-center">
+      <ShoppingSummary>
+        <ShoppingSummaryBtn :btnText="btnText"/>
+      </ShoppingSummary>
     </div>
   </div>
 </template>
 
 <script>
 import CartItem from '@/components/CartItem.vue'
+import ShoppingSummary from '@/components/ShoppingSummary.vue'
+import ShoppingSummaryBtn from '@/components/ShoppingSummaryBtn.vue'
 
 export default {
   name: 'Cart',
   data () {
     return {
-      isCheckallSelected: false
+      isCheckallSelected: false,
+      btnText: 'Beli',
+      checkmark: false
     }
   },
   components: {
-    CartItem
+    CartItem,
+    ShoppingSummary,
+    ShoppingSummaryBtn
   }
 }
 </script>
@@ -51,6 +50,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/fblazt.scss';
 
+.hidden {
+  display: none;
+}
+.wrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 .h-full {
   height: 100%;
 }
@@ -92,25 +98,6 @@ hr.boldhr {
 }
 hr.thinhr {
   border: 1px solid #cbd5e0;
-}
-.summary {
-  position: sticky;
-  top: 100px;
-  height: 244px;
-  width: 350px;
-  padding: 16px;
-  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
-  .btn-buy {
-    background-color: #FA591D;
-    border: none;
-    border-radius: 8px;
-  }
-  .btn-promo {
-    background-color: white;
-    border:none;
-    border-radius: 8px;
-    box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
-  }
 }
 .text-bold {
   font-size: 14px;
