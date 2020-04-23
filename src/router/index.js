@@ -5,6 +5,7 @@ import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Category from '@/views/Category.vue'
 import People from '@/views/People.vue'
+import PeopleEdit from '@/views/PeopleEdit.vue'
 
 Vue.use(VueRouter)
 
@@ -30,9 +31,14 @@ const routes = [
     component: Category
   },
   {
-    path: '/people/1',
+    path: '/people/:id',
     name: 'People',
     component: People
+  },
+  {
+    path: '/people/:id/edit',
+    name: 'PeopleEdit',
+    component: PeopleEdit
   }
 ]
 

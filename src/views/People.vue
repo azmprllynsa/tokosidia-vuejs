@@ -9,7 +9,7 @@
           <p id="following">71 Following</p>
         </div>
         <div class="footer">
-          <router-link to="/people/1/edit">
+          <router-link :to="'/people/' + $route.params.id + '/edit'">
             <button>Edit Profil</button>
           </router-link>
         </div>
