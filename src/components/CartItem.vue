@@ -35,10 +35,10 @@
         <div class="product-footer w-full flex-row justify-between">
           <div @click="addNote = !addNote" :class="addNote ? 'note-none' : 'note-active text-green'">Add Notes For This Shop</div>
           <div :class="addNote ? 'product-note-active flex-col' : 'product-note-none'">
-            <p class="text-gray">Notes for This Shop (Optional)</p>
+            <p class="text-gray">Catatan untuk Toko (Opsional)</p>
             <input type="text" name="note" id="note">
           </div>
-          <div class="button-collection flex-row justify-between">
+          <div class="button-collection flex-row justify-between items-center">
             <i @click="isLoved = !isLoved" :class="isLoved ? 'loved' : ''" class="fas fa-heart fa-lg"></i>
             <i class="fas fa-trash fa-lg"></i>
             <div>
