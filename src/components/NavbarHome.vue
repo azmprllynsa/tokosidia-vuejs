@@ -711,6 +711,7 @@ export default {
             // flex-wrap: wrap;
             // max-height: 1000px;
             overflow: hidden;
+          }
           .list-sub-category {
             margin-bottom: 20px;
             .semi-a {
@@ -894,4 +895,5 @@ nav {
   border-radius: 4px;
   color: #03ac0c;
 }
+
 </style>
