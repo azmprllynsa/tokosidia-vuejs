@@ -43,7 +43,7 @@
       <div class="column">
         <ul>
           <li><h5>Guiude Help</h5></li>
-          <li><router-link to="/">Tokopedia Care</router-link></li>
+          <li><router-link to="/">Tokosidia Care</router-link></li>
           <li><router-link to="/">Terms and Condition</router-link></li>
           <li><router-link to="/">Privacy</router-link></li>
         </ul>
