@@ -45,7 +45,7 @@ const routes = [
     }
   },
   {
-    path: '/list-category',
+    path: '/p/list-category',
     name: 'Listcategory',
     component: Listcategory,
     meta: {

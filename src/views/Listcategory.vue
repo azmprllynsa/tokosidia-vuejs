@@ -337,7 +337,9 @@ export default {
 .wrapper{
   // background-color: crimson;
   // width: 100%;
-  height: 100vh;
+  // height: 100vh;
+  padding-top: 50px;
+  padding-bottom: 100px;
   .list-image{
     background-color: rgb(109, 97, 97);
     display: flex;

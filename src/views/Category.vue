@@ -10,159 +10,161 @@
           </div>
         </div>
       </div>
-      <div class="content">
-        <div class="head">
-          <div class="head-name">
-            <div class="name">Book</div>
-          </div>
-          <div class="head-img">
-            <div class="image-head">
-              <img class="image-contain" src='@/assets/img/rsz_bookdesain.jpg'>
+      <div class="content-parent">
+        <div class="content">
+          <div class="head">
+            <div class="head-name">
+              <div class="name">Book</div>
+            </div>
+            <div class="head-img">
+              <div class="image-head">
+                <img class="image-contain" src='@/assets/img/rsz_bookdesain.jpg'>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="content-wrap">
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
+          <div class="content-wrap">
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
-            </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
-            </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
-            </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
-            </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
-            </div>
-          </div>
-          <div class="content-category">
-            <div class="category-title">
-              <p>Arsitektur & Desain</p>
-            </div>
-            <div class="category-list">
-              <p>Buku Bangunan</p>
-              <p>Buku Tidur</p>
-              <p>Buku Tidur Bangun</p>
-              <p>Buku Bangun Tidur</p>
-              <p>Tidur Bangun Buku</p>
-              <p>Bangun Tidur Buku</p>
+            <div class="content-category">
+              <div class="category-title">
+                <p>Arsitektur & Desain</p>
+              </div>
+              <div class="category-list">
+                <p>Buku Bangunan</p>
+                <p>Buku Tidur</p>
+                <p>Buku Tidur Bangun</p>
+                <p>Buku Bangun Tidur</p>
+                <p>Tidur Bangun Buku</p>
+                <p>Bangun Tidur Buku</p>
+              </div>
             </div>
           </div>
         </div>
@@ -222,9 +224,9 @@ export default {
     position: relative;
     .head{
       background-color:rgb(98,200,74);
-      width: 457px;
+      width: 400px;
       height: 160px;
-      border-radius: 0 0 158px;
+      border-radius: 0 0 130px;
       display: flex;
       overflow: hidden;
       position: absolute;
