@@ -194,8 +194,12 @@
       </div>
     </div>
     <div class="content-section">
-      <div class="first-section"></div>
-      <div class="second-section"></div>
+      <div class="first-section">
+        <div><p>Buku Agama</p></div>
+      </div>
+      <div class="second-section">
+        <div><p>Buku Anak &  Pelajaran</p></div>
+      </div>
     </div>
     <div class="content">
       <div class="content-card-holder">
@@ -338,7 +342,7 @@ export default {
   // background-color: crimson;
   // width: 100%;
   // height: 100vh;
-  padding-top: 50px;
+  padding-top: 20px;
   padding-bottom: 100px;
   .list-image{
     background-color: rgb(109, 97, 97);
@@ -449,9 +453,9 @@ export default {
           // height: 30px;
           display: flex;
           .disc{
-            // background-color:rgb(238, 194, 204);
-            width: 30px;
-            height: 30px;
+            background-color:rgb(238, 194, 204);
+            width: 28px;
+            height: 25px;
             border-radius: 2px;
             display: flex;
             align-items: center;
@@ -510,12 +514,30 @@ export default {
       width: 215px;
       height: 64px;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
+      p{
+        font-size: 20px;
+        color: white;
+        font-weight: 600;
+        margin-top: -18px;
+        padding-left: 10px;
+      }
     }
     .second-section{
       background: linear-gradient(to right, #178E9D, #23C5DC);
       width: 215px;
       height: 64px;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
+      p{
+        font-size: 18px;
+        color: white;
+        font-weight: 600;
+        margin-top: -18px;
+        padding-left: 10px;
+      }
     }
   }
   .content{
@@ -552,6 +574,10 @@ export default {
         .content-card-name{
           // background-color: seagreen;
           width: 100%;
+          p{
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.7);
+          }
         }
         .content-card-disc{
           // background-color: sienna;
@@ -560,11 +586,12 @@ export default {
           display: flex;
           .content-card-disc-item{
             background-color: #eec2cc;
-            width: 40px;
-            height: 100%;
+            width: 28px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 3px;
             p{
               font-size: 10px;
               font-weight: 700;
