@@ -46,7 +46,7 @@
         </div>
       </div>
     </nav>
-    <div class="modal-category roll"
+    <div class="modal-category"
          @mouseenter="hoverCategory = true"
          @mouseleave="hoverCategory = false"
          :class="{ roll: hoverCategory }"
