@@ -1,8 +1,9 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
+    <div class="parent-wrapper">
+      <div class="modal-mask" @click="$emit('bg-clicked')"></div>
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" :style="{ width: widthModal || '530px' }">
           <slot></slot>
         </div>
       </div>
@@ -12,11 +13,22 @@
 
 <script>
 export default {
-  name: 'ModalContainer'
+  name: 'ModalContainer',
+  props: ['widthModal']
 }
 </script>
 
 <style lang="scss" scoped>
+.parent-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -24,14 +36,16 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.625);
   display: table;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .modal-wrapper {
+  position: fixed;
   display: table-cell;
   vertical-align: middle;
+  z-index: 9999;
 }
 
 .modal-container {
@@ -54,18 +68,11 @@ export default {
  * these styles.
  */
 
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
+.modal-enter .modal-container, .modal-mask
+.modal-leave-active .modal-wrapper {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+  opacity: 0;
 }
 
 </style>
