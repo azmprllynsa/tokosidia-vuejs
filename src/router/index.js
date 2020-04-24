@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import LoginPage from '@/views/auth/LoginPage.vue'
+import RegisterPage from '@/views/auth/RegisterPage.vue'
 import StoreDetail from '@/views/StoreDetail.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import Search from '@/views/Search.vue'
@@ -31,6 +32,14 @@ const routes = [
     component: LoginPage,
     meta: {
       title: 'Masuk / Login | Tokosidia'
+    }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: RegisterPage,
+    meta: {
+      title: 'Daftar | Tokosidia'
     }
   },
   {

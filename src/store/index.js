@@ -6,14 +6,16 @@ Vue.use(Vuex, axios)
 
 export default new Vuex.Store({
   state: {
-    dataLogin: {
-      input: {
-        email: '',
-        password: ''
-      },
+    dataForm: {
+      fullname: '',
+      email: '',
+      password: '',
+      password2: '',
       currentForm: false,
+      errorName: false,
       errorEmail: false,
       errorPassword: false,
+      errorPassword2: false,
       typePassword: 'password',
       hiddenPassword: true
     },
@@ -21,25 +23,37 @@ export default new Vuex.Store({
     modalLogin: false
   },
   getters: {
-    dataLogin: state => state.dataLogin
+    dataForm: state => state.dataForm
   },
   mutations: {
     SET_PEOPLE_DETAIL (state, peopleDetail) {
       state.peopleDetail = peopleDetail
     },
     TOGGLE_HIDDEN (state) {
-      state.dataLogin.hiddenPassword = !state.dataLogin.hiddenPassword
-      if (state.dataLogin.hiddenPassword) state.dataLogin.typePassword = 'password'
-      if (!state.dataLogin.hiddenPassword) state.dataLogin.typePassword = 'text'
+      state.dataForm.hiddenPassword = !state.dataForm.hiddenPassword
+      if (state.dataForm.hiddenPassword) state.dataForm.typePassword = 'password'
+      if (!state.dataForm.hiddenPassword) state.dataForm.typePassword = 'text'
+    },
+    CHECK_NAME (state) {
+      if (state.dataForm.fullname.length > 0) state.dataForm.errorName = false
+      else state.dataForm.errorName = true
     },
     CHECK_EMAIL (state) {
-      const emailVerify = state.dataLogin.input.email.match(/^\w+[\w.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)
-      if (emailVerify === null && state.dataLogin.input.email.length > 0) state.dataLogin.errorEmail = true
-      else state.dataLogin.errorEmail = false
+      const emailVerify = state.dataForm.email.match(/^\w+[\w.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)
+      if (emailVerify === null && state.dataForm.email.length > 0) state.dataForm.errorEmail = true
+      else state.dataForm.errorEmail = false
+    },
+    CHECK_PASSWORD (state) {
+      if (state.dataForm.password.length <= 0) state.dataForm.errorPassword = true
+      else state.dataForm.errorPassword = false
+    },
+    CHECK_PASSWORD2 (state) {
+      if (state.dataForm.password2 !== state.dataForm.password || state.dataForm.password2.length === 0) state.dataForm.errorPassword2 = true
+      else state.dataForm.errorPassword2 = false
     },
     SUBMIT_EMAIL (state) {
-      if (state.dataLogin.input.email.length === 0 || state.dataLogin.errorEmail) return
-      state.dataLogin.currentForm = true
+      if (state.dataForm.email.length === 0 || state.dataForm.errorEmail) return
+      state.dataForm.currentForm = true
     }
   },
   actions: {
