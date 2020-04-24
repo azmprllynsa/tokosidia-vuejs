@@ -86,7 +86,7 @@ export default {
       if (!this.hiddenPassword) this.typePassword = 'text'
     },
     checkEmail () {
-      const emailVerify = this.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+      const emailVerify = this.email.match(/^\w+[\w.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)
       if (emailVerify === null && this.email.length > 0) this.errorEmail = true
       else this.errorEmail = false
     },
