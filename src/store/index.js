@@ -6,7 +6,8 @@ Vue.use(Vuex, axios)
 
 export default new Vuex.Store({
   state: {
-    peopleDetail: []
+    peopleDetail: [],
+    modalLogin: false
   },
   mutations: {
     SET_PEOPLE_DETAIL (state, peopleDetail) {

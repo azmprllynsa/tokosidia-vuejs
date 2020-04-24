@@ -41,7 +41,7 @@
         </div>
         <div class="line"></div>
         <div class="auth-btn">
-          <button class="btn btn-secondary">Masuk</button>
+          <button @click="$store.state.modalLogin = true" class="btn btn-secondary">Masuk</button>
           <button class="btn btn-primary">Daftar</button>
         </div>
       </div>

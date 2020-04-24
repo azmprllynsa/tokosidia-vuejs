@@ -71,7 +71,7 @@
 <script>
 
 export default {
-  name: 'Product Detail',
+  name: 'product-detail',
   data () {
     return {
       dropVoucher: false
