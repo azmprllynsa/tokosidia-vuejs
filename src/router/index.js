@@ -67,7 +67,7 @@ const routes = [
     }
   },
   {
-    path: '/p/list-category',
+    path: '/p/:listcategory',
     name: 'Listcategory',
     component: Listcategory,
     meta: {
@@ -75,7 +75,7 @@ const routes = [
     }
   },
   {
-    path: '/p/list-category/sub-category',
+    path: '/p/:listcategory/:subcategory',
     name: 'Subcategory',
     component: Subcategory,
     meta: {
