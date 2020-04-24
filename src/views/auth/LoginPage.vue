@@ -12,34 +12,34 @@
           <router-link to="/register">Daftar</router-link>
         </div>
         <section class="modal-body">
-          <form @submit.prevent="submitEmail" :class="{ hide: currentForm, backIn: !currentForm }">
+          <form @submit.prevent="$store.commit('SUBMIT_EMAIL')" :class="{ hide: $store.getters.dataLogin.currentForm, backIn: !$store.getters.dataLogin.currentForm }">
             <div class="input-group">
-              <label for="email">Email</label>
-              <input id="email" type="text" v-model="email" @input="checkEmail">
+              <label>Email</label>
+              <input type="text" v-model="$store.getters.dataLogin.input.email" @input="$store.commit('CHECK_EMAIL')">
               <div class="input-info">
-                <small :class="{ hide: errorEmail }">Contoh: email@tokosidia.com</small>
-                <small :class="{ hide: !errorEmail, red: errorEmail }">Format email salah</small>
+                <small :class="{ hide: $store.getters.dataLogin.errorEmail }">Contoh: email@tokosidia.com</small>
+                <small :class="{ hide: !$store.getters.dataLogin.errorEmail, red: $store.getters.dataLogin.errorEmail }">Format email salah</small>
               </div>
             </div>
-            <button :class="{ disabled: email.length === 0 || errorEmail }">Selanjutnya</button>
+            <button :class="{ disabled: $store.getters.dataLogin.input.email.length === 0 || $store.getters.dataLogin.errorEmail }">Selanjutnya</button>
           </form>
         </section>
         <section class="modal-body">
-          <form @submit.prevent :class="{ hide: !currentForm, nextIn: currentForm }">
+          <form @submit.prevent :class="{ hide: !$store.getters.dataLogin.currentForm, nextIn: $store.getters.dataLogin.currentForm }">
             <label>Email</label>
             <div class="input-user">
-              <span>{{ email }}</span>
-              <span @click="currentForm = false" class="change-user">Ubah</span>
+              <span>{{ $store.getters.dataLogin.input.email }}</span>
+              <span @click="$store.getters.dataLogin.currentForm = false" class="change-user">Ubah</span>
             </div>
             <div class="input-group password">
-              <label for="password">Kata Sandi</label>
-              <div class="input password" :class="{ hidden: hiddenPassword, visible: !hiddenPassword }">
-                <input id="password" :type="typePassword" v-model="password">
-                <img @click="toggleHidden" class="pass-hidden" src="@/assets/img/pass-hidden.png">
-                <img @click="toggleHidden" class="pass-visible" src="@/assets/img/pass-visible.png">
+              <label>Kata Sandi</label>
+              <div class="input password" :class="{ hidden: $store.getters.dataLogin.hiddenPassword, visible: !$store.getters.dataLogin.hiddenPassword }">
+                <input :type="$store.getters.dataLogin.typePassword" v-model="$store.getters.dataLogin.input.password">
+                <img @click="$store.commit('TOGGLE_HIDDEN')" class="pass-hidden" src="@/assets/img/pass-hidden.png">
+                <img @click="$store.commit('TOGGLE_HIDDEN')" class="pass-visible" src="@/assets/img/pass-visible.png">
               </div>
               <div class="input-info">
-                <small :class="{ hide: !errorPassword, red: errorPassword }">Kata sandi harus diisi</small>
+                <small :class="{ hide: !$store.getters.dataLogin.errorPassword, red: $store.getters.dataLogin.errorPassword }">Kata sandi harus diisi</small>
               </div>
             </div>
             <div class="input-group checkbox">
@@ -62,33 +62,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      currentForm: false,
-      email: '',
-      password: '',
-      errorEmail: false,
-      errorPassword: false,
-      typePassword: 'password',
-      hiddenPassword: true
-    }
-  },
-  methods: {
-    toggleHidden () {
-      this.hiddenPassword = !this.hiddenPassword
-      if (this.hiddenPassword) this.typePassword = 'password'
-      if (!this.hiddenPassword) this.typePassword = 'text'
-    },
-    checkEmail () {
-      const emailVerify = this.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
-      if (emailVerify === null && this.email.length > 0) this.errorEmail = true
-      else this.errorEmail = false
-    },
-    submitEmail () {
-      if (this.email.length === 0 || this.errorEmail) return
-      this.currentForm = true
-    }
-  }
 }
 </script>
 
