@@ -74,8 +74,16 @@
   justify-content: start;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
 .items-center {
   align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 // CHECKBOX STYLING

@@ -1,86 +1,141 @@
 <template>
-  <main>
-    <div class="main-header">
-      <img src="https://ecs7.tokopedia.net/img/user/setting/icon-people.svg" alt="User Icon">
-      <p class="text-bold">Firman</p>
-    </div>
-    <div class="main-content">
-      <nav>
-        <ol class="text-gray text-lg">
-          <li>Biodata Diri</li>
-          <li>Daftar Alamat</li>
-          <li>Pembayaran</li>
-          <li>Rekening Bank</li>
-          <li>Notifikasi</li>
-          <li>Keamanan</li>
-          <li>Google Authenticator</li>
-        </ol>
-        <hr>
-      </nav>
-      <div class="personal-information">
-        <div class="picture-section">
-          <div class="profile-picture-container">
-            <img id="profile-picture" src="https://ecs7.tokopedia.net/img/cache/300/default_picture_user/default_toped-20.jpg" alt="">
-            <div class="upload">
-              <input type="file" class="custom-file-input">
-              <p class="text-md text-gray">Besar file: maksimum 10.000.000 bytes (10 Megabytes)</p>
-              <p class="text-md text-gray">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</p>
-            </div>
-          </div>
-          <button class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
-          <button class="text-gray"><i class="fas fa-lock"></i> PIN Tokopedia</button>
-        </div>
-        <div class="biodata-section">
-          <div class="biodata">
-            <h4 class="text-xl text-semibold">Ubah Biodata Diri</h4>
-            <div class="biodata-section-flex text-gray text-lg">
-              <div class="biodata-section-title">Nama</div>
-              <div class="name-edit">
-                <p>Firman</p>
-                <button class="btn-borderless text-green hover-red">Ubah</button>
+  <main >
+    <!-- <div v-for="data in peopleDetail" :key="data.id"> -->
+      <div class="main-header">
+        <img src="https://ecs7.tokopedia.net/img/user/setting/icon-people.svg" alt="User Icon">
+        <p class="text-bold">{{ peopleDetail.data.fullname }}</p>
+      </div>
+      <div class="main-content">
+        <nav>
+          <ol class="text-gray text-lg">
+            <li>Biodata Diri</li>
+            <li>Daftar Alamat</li>
+            <li>Pembayaran</li>
+            <li>Rekening Bank</li>
+            <li>Notifikasi</li>
+            <li>Keamanan</li>
+            <li>Google Authenticator</li>
+          </ol>
+          <hr>
+        </nav>
+        <div class="personal-information">
+          <div class="picture-section">
+            <div class="profile-picture-container">
+              <img id="profile-picture" src="https://ecs7.tokopedia.net/img/cache/300/default_picture_user/default_toped-20.jpg" alt="">
+              <div class="upload">
+                <input type="file" class="custom-file-input">
+                <p class="text-md text-gray">Besar file: maksimum 10.000.000 bytes (10 Megabytes)</p>
+                <p class="text-md text-gray">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</p>
               </div>
             </div>
-            <div class="biodata-section-flex text-gray text-lg">
-              <div class="biodata-section-title">Tanggal Lahir</div>
-              <div>17 Agustus 1945</div>
-            </div>
-            <div class="biodata-section-flex text-gray text-lg biodata-section-bottom">
-              <div class="biodata-section-title">Jenis Kelamin</div>
-              <div>Pria</div>
-            </div>
+            <button class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
+            <button class="text-white btn-green"><i class="fas fa-lock"></i> PIN Tokopedia</button>
           </div>
-          <div class="contact">
-            <h4 class="text-xl text-semibold">Ubah Kontak</h4>
-            <div class="biodata-section-flex text-gray text-lg">
-              <div class="biodata-section-title">Email</div>
-              <div class="email-edit">
-                <p>fyamakagashi@gmail.com</p>
-                <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
-                <button class="btn-borderless text-green hover-red">Ubah</button>
+          <div class="biodata-section">
+            <div class="biodata">
+              <h4 class="text-xl text-semibold">Ubah Biodata Diri</h4>
+              <div class="biodata-section-flex text-gray text-lg">
+                <div class="biodata-section-title">Nama</div>
+                <div class="name-edit">
+                  <p>{{ peopleDetail.data.fullname }}</p>
+                  <button @click="showModal = !showModal" class="btn-borderless text-green hover-red">Ubah</button>
+                  <ModalContainer :class="showModal ? '' : 'hidden'" class="edit-name-modal">
+                    <div class="w-full flex-col justify-end items-end">
+                      <img @click="showModal = !showModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+                    </div>
+                    <div class="flex-col justify-center items-center">
+                      <h3 class="text-2xl text-bold">Ubah Nama</h3>
+                      <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
+                    </div>
+                    <div class="mt-20">
+                      <form id="form" action="" class="flex-col">
+                        <label for="fullname">Nama</label>
+                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.data.fullname" class="mt-10 modal-textfield">
+                        <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
+                      </form>
+                    </div>
+                    <div class="mt-50 flex-row justify-center items-center">
+                      <button class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                    </div>
+                  </ModalContainer>
+                </div>
+              </div>
+              <div class="biodata-section-flex text-gray text-lg">
+                <div class="biodata-section-title">Tanggal Lahir</div>
+                <div>17 Agustus 1945</div>
+              </div>
+              <div class="biodata-section-flex text-gray text-lg biodata-section-bottom">
+                <div class="biodata-section-title">Jenis Kelamin</div>
+                <div>Pria</div>
               </div>
             </div>
-            <div class="biodata-section-flex text-gray text-lg">
-              <div class="biodata-section-title">Nomor HP</div>
-              <div class="phone-edit">
-                <p>0895-6054-8323-0</p>
-                <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
-                <button class="btn-borderless text-green hover-red">Ubah</button>
+            <div class="contact">
+              <h4 class="text-xl text-semibold">Ubah Kontak</h4>
+              <div class="biodata-section-flex text-gray text-lg">
+                <div class="biodata-section-title">Email</div>
+                <div class="email-edit">
+                  <p>{{ peopleDetail.data.email }}</p>
+                  <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
+                  <button class="btn-borderless text-green hover-red">Ubah</button>
+                </div>
+              </div>
+              <div class="biodata-section-flex text-gray text-lg">
+                <div class="biodata-section-title">Nomor HP</div>
+                <div class="phone-edit">
+                  <p>{{ peopleDetail.data.phone_number }}</p>
+                  <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
+                  <button class="btn-borderless text-green hover-red">Ubah</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </main>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import ModalContainer from '@/components/ModalContainer'
+
 export default {
-  name: 'EditPeopleMain'
+  name: 'EditPeopleMain',
+  data () {
+    return {
+      showModal: false
+    }
+  },
+  components: {
+    ModalContainer
+  },
+  mounted () {
+    this.$store.dispatch('loadPeopleDetail')
+  },
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/fblazt.scss';
+
+.btn-submit {
+  padding: 10px 50px;
+  background-color: #4FA149;
+  border: none;
+  color: #FFFFFF;
+  border-radius: 3px;
+}
+.modal-textfield {
+  border: 1px solid lightgray;
+  padding: 10px 15px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
 .dropdown {
   -webkit-transition: -webkit-transform .5s ease-in-out;
   -ms-transition: -ms-transform .5s ease-in-out;
@@ -109,6 +164,9 @@ hr {
 }
 .text-xl {
   font-size: 14px;
+}
+.text-2xl {
+  font-size: 18px;
 }
 .text-lg {
   font-size: 13px;
@@ -213,8 +271,14 @@ main {
           background-color: #FFFFFF;
           border: 1px solid #E0E0E0;
         }
+        button.btn-green {
+          background-color: #56B54A;
+        }
         button:hover {
             background-color:#F5F5F5
+        }
+        button.btn-green:hover {
+          background-color: green;
         }
       }
       .biodata-section {
