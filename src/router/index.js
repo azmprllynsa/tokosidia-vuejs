@@ -8,6 +8,7 @@ import Category from '@/views/Category.vue'
 import People from '@/views/People.vue'
 import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
+import Subcategory from '@/views/Subcategory.vue'
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,14 @@ const routes = [
     component: Listcategory,
     meta: {
       title: 'Jual | Tokosidia'
+    }
+  },
+  {
+    path: '/p/list-category/sub-category',
+    name: 'Subcategory',
+    component: Subcategory,
+    meta: {
+      title: ' Jual | Tokosidia'
     }
   },
   {
