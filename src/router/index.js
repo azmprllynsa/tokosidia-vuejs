@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import LoginPage from '@/views/auth/LoginPage.vue'
 import StoreDetail from '@/views/StoreDetail.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 import Search from '@/views/Search.vue'
 import Cart from '@/views/Cart.vue'
 import Shipment from '@/views/Shipment.vue'
@@ -93,7 +94,15 @@ const routes = [
     name: 'Store Detail',
     component: StoreDetail,
     meta: {
-      title: 'Toko Detail | Tokosidia'
+      title: 'Rincian Toko | Tokosidia'
+    }
+  },
+  {
+    path: '/:storename/:productname',
+    name: 'Product Detail',
+    component: ProductDetail,
+    meta: {
+      title: 'Rincian Produk | Tokosidia'
     }
   }
 ]
