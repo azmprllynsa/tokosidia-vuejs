@@ -9,6 +9,7 @@ import Cart from '@/views/Cart.vue'
 import Shipment from '@/views/Shipment.vue'
 import Category from '@/views/Category.vue'
 import People from '@/views/People.vue'
+import OrderList from '@/views/OrderList.vue'
 import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
 import Subcategory from '@/views/Subcategory.vue'
@@ -80,6 +81,14 @@ const routes = [
     component: Subcategory,
     meta: {
       title: ' Jual | Tokosidia'
+    }
+  },
+  {
+    path: '/order-list',
+    name: 'OrderList',
+    component: OrderList,
+    meta: {
+      title: 'Daftar Transaksi | Tokosidia'
     }
   },
   {
