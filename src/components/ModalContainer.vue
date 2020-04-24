@@ -4,6 +4,9 @@
       <div class="modal-mask" @click="$emit('bg-clicked')"></div>
       <div class="modal-wrapper">
         <div class="modal-container" :style="{ width: widthModal || '530px' }">
+          <div v-if="closeButton || false" class="close">
+            <img @click="$store.state.modalLogin = false" src="@/assets/img/close.png">
+          </div>
           <slot></slot>
         </div>
       </div>
@@ -14,11 +17,21 @@
 <script>
 export default {
   name: 'ModalContainer',
-  props: ['widthModal']
+  props: ['widthModal', 'closeButton']
 }
 </script>
 
 <style lang="scss" scoped>
+.close {
+  text-align: right;
+  height: 15px;
+  margin-bottom: 20px;
+  img {
+    height: 100%;
+    opacity: .3;
+    cursor: pointer;
+  }
+}
 .parent-wrapper {
   display: flex;
   justify-content: center;
