@@ -42,7 +42,7 @@
         <div class="line"></div>
         <div class="auth-btn">
           <button @click="$store.state.modalLogin = true" class="btn btn-secondary">Masuk</button>
-          <button class="btn btn-primary">Daftar</button>
+          <button @click="$router.push('/register')" class="btn btn-primary">Daftar</button>
         </div>
       </div>
     </nav>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 import Home from '@/views/Home.vue'
 import LoginPage from '@/views/auth/LoginPage.vue'
 import RegisterPage from '@/views/auth/RegisterPage.vue'
@@ -24,7 +25,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -32,7 +34,8 @@ const routes = [
     name: 'Login',
     component: LoginPage,
     meta: {
-      title: 'Masuk / Login | Tokosidia'
+      title: 'Masuk / Login | Tokosidia',
+      requiresVisitor: true
     }
   },
   {
@@ -40,7 +43,8 @@ const routes = [
     name: 'Register',
     component: RegisterPage,
     meta: {
-      title: 'Daftar | Tokosidia'
+      title: 'Daftar | Tokosidia',
+      requiresVisitor: true
     }
   },
   {
@@ -48,7 +52,8 @@ const routes = [
     name: 'Search',
     component: Search,
     meta: {
-      title: 'Jual | Tokosidia'
+      title: 'Jual | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -56,7 +61,8 @@ const routes = [
     name: 'Cart',
     component: Cart,
     meta: {
-      title: 'Keranjang | Tokosidia'
+      title: 'Keranjang | Tokosidia',
+      requiresAuth: true
     }
 
   },
@@ -65,7 +71,8 @@ const routes = [
     name: 'Shipment',
     component: Shipment,
     meta: {
-      title: 'Checkout | Tokosidia'
+      title: 'Checkout | Tokosidia',
+      requiresAuth: true
     }
 
   },
@@ -74,7 +81,8 @@ const routes = [
     name: 'Category',
     component: Category,
     meta: {
-      title: 'Daftar Produk | Tokosidia'
+      title: 'Daftar Produk | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -82,7 +90,8 @@ const routes = [
     name: 'Listcategory',
     component: Listcategory,
     meta: {
-      title: 'Jual | Tokosidia'
+      title: 'Jual | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -90,7 +99,8 @@ const routes = [
     name: 'Subcategory',
     component: Subcategory,
     meta: {
-      title: ' Jual | Tokosidia'
+      title: ' Jual | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -98,7 +108,8 @@ const routes = [
     name: 'OrderList',
     component: OrderList,
     meta: {
-      title: 'Daftar Transaksi | Tokosidia'
+      title: 'Daftar Transaksi | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -106,7 +117,8 @@ const routes = [
     name: 'People',
     component: People,
     meta: {
-      title: 'User Detail | Tokosidia'
+      title: 'User Detail | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -114,7 +126,8 @@ const routes = [
     name: 'PeopleEdit',
     component: PeopleEdit,
     meta: {
-      title: 'Ubah Profil | Tokosidia'
+      title: 'Ubah Profil | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -122,7 +135,8 @@ const routes = [
     name: 'Store Detail',
     component: StoreDetail,
     meta: {
-      title: 'Rincian Toko | Tokosidia'
+      title: 'Rincian Toko | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -130,7 +144,8 @@ const routes = [
     name: 'Product Detail',
     component: ProductDetail,
     meta: {
-      title: 'Rincian Produk | Tokosidia'
+      title: 'Rincian Produk | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -138,7 +153,8 @@ const routes = [
     name: 'Page Not Found',
     component: PageNotFound,
     meta: {
-      title: 'Halaman Tidak Ditemukan | Tokosidia'
+      title: 'Halaman Tidak Ditemukan | Tokosidia',
+      requiresAuth: true
     }
   }
 ]
@@ -147,6 +163,13 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters.isLogin) next({ name: 'Login' })
+  else next()
+  if (to.matched.some(record => record.meta.requiresVisitor) && store.getters.isLogin) next({ name: 'Home' })
+  else next()
 })
 
 export default router
