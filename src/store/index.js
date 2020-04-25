@@ -83,6 +83,7 @@ export default new Vuex.Store({
         })
     },
     submitRegister ({ commit, state }) {
+      state.currentForm = false
       return new Promise((resolve) => {
         if (state.dataForm.email.length === 0 || state.dataForm.errorEmail) return
         state.dataForm.currentForm = true
@@ -101,6 +102,7 @@ export default new Vuex.Store({
       })
     },
     submitLogin ({ commit, state }) {
+      state.currentForm = false
       return new Promise((resolve, reject) => {
         const data = {
           email: state.dataForm.email,
