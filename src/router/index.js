@@ -14,6 +14,7 @@ import OrderList from '@/views/OrderList.vue'
 import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
 import Subcategory from '@/views/Subcategory.vue'
+import PageNotFound from '@/views/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -130,6 +131,14 @@ const routes = [
     component: ProductDetail,
     meta: {
       title: 'Rincian Produk | Tokosidia'
+    }
+  },
+  {
+    path: '*',
+    name: 'Page Not Found',
+    component: PageNotFound,
+    meta: {
+      title: 'Halaman Tidak Ditemukan | Tokosidia'
     }
   }
 ]
