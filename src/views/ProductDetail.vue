@@ -111,9 +111,9 @@
             <p class="counter-label">Stok tersedia</p>
             <div class="counter">
               <div class="counter-box">
-                <img @click="decrement" :src="require(`@/assets/img/${nameCounter}.svg`)" alt="">
+                <img @click="decrement" :src="require(`@/assets/img/${nameCounter}.svg`)">
                 <input v-model="amount" type="number" @input="toggleCounter">
-                <img @click="increment" src="@/assets/img/counter-plus.svg" alt="">
+                <img @click="increment" src="@/assets/img/counter-plus.svg">
               </div>
             </div>
           </div>

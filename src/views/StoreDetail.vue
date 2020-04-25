@@ -208,8 +208,8 @@
           <h2>Semua Produk</h2>
         </div>
         <div class="products">
-          <div v-for="item in 3" :key="item" class="card-product">
-            <router-link to="/">
+          <div v-for="(item, i) in 3" :key="i" class="card-product">
+            <router-link :to="`/${$route.params.storename}/namaproduk`">
               <div class="whitelist">
                 <div class="love">
                   <img src="">
@@ -248,8 +248,8 @@
               </div>
             </router-link>
           </div>
-          <div v-for="item in 40" :key="item" class="card-product">
-            <router-link to="/">
+          <div v-for="(item, i) in 40" :key="i + 3" class="card-product">
+            <router-link :to="`/${$route.params.storename}/namaproduk`">
               <div class="whitelist">
                 <div class="love">
                   <img src="">
@@ -317,7 +317,7 @@
 <script>
 
 export default {
-  name: 'Store Detail',
+  name: 'store-detail',
   data () {
     return {
       dropVoucher: false
