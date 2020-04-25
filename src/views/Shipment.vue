@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper flex-col">
+    <ModalContainer :widtModal="widthModal">
+      tes
+    </ModalContainer>
     <div>
       <h2 class="text-xl text-bold">Checkout</h2>
     </div>
@@ -35,18 +38,22 @@ import PeopleCheckout from '@/components/PeopleCheckout'
 import ItemCheckout from '@/components/ItemCheckout'
 import ShoppingSummary from '@/components/ShoppingSummary'
 import ShoppingSummaryBtn from '@/components/ShoppingSummaryBtn'
+import ModalContainer from '@/components/ModalContainer'
+
 export default {
   name: 'Shipment',
   data () {
     return {
-      btnText: 'Pilih Pembayaran'
+      btnText: 'Pilih Pembayaran',
+      widthModal: '448px'
     }
   },
   components: {
     ShoppingSummary,
     ShoppingSummaryBtn,
     PeopleCheckout,
-    ItemCheckout
+    ItemCheckout,
+    ModalContainer
   }
 }
 </script>
