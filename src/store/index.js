@@ -19,11 +19,17 @@ export default new Vuex.Store({
       typePassword: 'password',
       hiddenPassword: true
     },
+    message: null,
+    dataUser: {},
     peopleDetail: [],
     modalLogin: false
   },
   getters: {
-    dataForm: state => state.dataForm
+    dataForm: state => state.dataForm,
+    isLogin: () => {
+      if (localStorage.token) return true
+      else return false
+    }
   },
   mutations: {
     SET_PEOPLE_DETAIL (state, peopleDetail) {
@@ -54,12 +60,17 @@ export default new Vuex.Store({
     SUBMIT_EMAIL (state) {
       if (state.dataForm.email.length === 0 || state.dataForm.errorEmail) return
       state.dataForm.currentForm = true
+    },
+    SUBMIT_REGISTER (state, data) {
+      state.message = data.message
+      state.dataUser = data.data
+      localStorage.token = data.data.token
     }
   },
   actions: {
     loadPeopleDetail ({ commit }) {
       axios
-        .get('http://192.168.1.84:8000/api/v1/tokosidia/user/1')
+        .get(`${process.env.VUE_APP_URL_API}user/1`)
         .then(res => {
           console.log(res.data)
           const peopleDetail = res.data
@@ -68,6 +79,24 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    submitRegister ({ commit, state }) {
+      return new Promise((resolve) => {
+        if (state.dataForm.email.length === 0 || state.dataForm.errorEmail) return
+        state.dataForm.currentForm = true
+
+        const data = {
+          fullname: state.dataForm.fullname,
+          email: state.dataForm.email,
+          password: state.dataForm.password
+        }
+        axios
+          .post(`${process.env.VUE_APP_URL_API}user/register`, data)
+          .then(res => {
+            commit('SUBMIT_REGISTER', res.data)
+            resolve(res)
+          })
+      })
     }
   },
   modules: {
