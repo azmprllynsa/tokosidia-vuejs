@@ -22,7 +22,7 @@
             <span>Sudah punya akun Tokosidia? <router-link to="/login">Masuk</router-link></span>
           </div>
           <section class="modal-body">
-            <form @submit.prevent="$store.commit('SUBMIT_REGISTER')">
+            <form @submit.prevent="submitRegister">
               <div class="input-group">
                 <label>Nama Lengkap</label>
                 <input :class="{ inputError: $store.getters.dataForm.errorName }" type="text" v-model="$store.getters.dataForm.fullname" @input="$store.commit('CHECK_NAME')">
@@ -71,6 +71,14 @@
 
 <script>
 export default {
+  methods: {
+    submitRegister () {
+      this.$store.dispatch('submitRegister')
+        .then(res => {
+          this.$router.push('/')
+        })
+    }
+  }
 }
 </script>
 
