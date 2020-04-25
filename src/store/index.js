@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 Vue.use(Vuex, axios)
 
@@ -20,8 +21,7 @@ export default new Vuex.Store({
       hiddenPassword: true
     },
     message: null,
-    dataUser: {},
-    peopleDetail: [],
+    peopleDetail: {},
     modalLogin: false
   },
   getters: {
@@ -63,24 +63,25 @@ export default new Vuex.Store({
     },
     SUBMIT_REGISTER (state, data) {
       state.message = data.message
-      state.dataUser = data.data
     },
     SUBMIT_LOGIN (state, data) {
       if (data.status !== 200) return
       state.message = data.message
-      state.dataUser = data.data
       localStorage.token = data.data.token
     }
   },
   actions: {
     loadPeopleDetail ({ commit }) {
-      axios
-        .get(`${process.env.VUE_APP_URL_API}user/1`)
-        .then(res => {
-          // console.log(res.data)
-          const peopleDetail = res.data
-          commit('SET_PEOPLE_DETAIL', peopleDetail)
-        })
+      jwt.verify(localStorage.token, process.env.VUE_APP_SECRET_KEY_TOKEN, (err, decoded) => {
+        if (err) return
+        axios
+          .get(`${process.env.VUE_APP_URL_API}user/${decoded.id}`)
+          .then(res => {
+            // console.log(res.data)
+            const peopleDetail = res.data
+            commit('SET_PEOPLE_DETAIL', peopleDetail)
+          })
+      })
     },
     submitRegister ({ commit, state }) {
       state.currentForm = false
@@ -97,7 +98,7 @@ export default new Vuex.Store({
           .post(`${process.env.VUE_APP_URL_API}user/register`, data)
           .then(res => {
             commit('SUBMIT_REGISTER', res.data)
-            resolve(res)
+            resolve(res.data)
           })
       })
     },
