@@ -32,19 +32,19 @@
             <p class="text-bold text-red mt-5">Rp. 50000</p>
           </div>
         </div>
-        <div class="w-full flex-row justify-between">
+        <div class="product-footer w-full flex-row justify-between">
           <div @click="addNote = !addNote" :class="addNote ? 'note-none' : 'note-active text-green'">Add Notes For This Shop</div>
           <div :class="addNote ? 'product-note-active flex-col' : 'product-note-none'">
-            <p class="text-gray">Notes for This Shop (Optional)</p>
+            <p class="text-gray">Catatan untuk Toko (Opsional)</p>
             <input type="text" name="note" id="note">
           </div>
-          <div class="button-collection flex-row justify-between">
+          <div class="button-collection flex-row justify-between items-center">
             <i @click="isLoved = !isLoved" :class="isLoved ? 'loved' : ''" class="fas fa-heart fa-lg"></i>
             <i class="fas fa-trash fa-lg"></i>
             <div>
-              <i class="fas fa-minus-circle fa-lg"></i>
+              <i @click="decrement" :class="count >= 2 ? 'counter-green' : ''" class="fas fa-minus-circle fa-lg"></i>
               <input type="number" class="counter" v-model="count">
-              <i class="fas fa-plus-circle fa-lg"></i>
+              <i @click="increment" class="counter-green fas fa-plus-circle fa-lg"></i>
             </div>
           </div>
         </div>
@@ -62,6 +62,14 @@ export default {
       isLoved: false,
       addNote: false,
       count: 1
+    }
+  },
+  methods: {
+    increment () {
+      this.count++
+    },
+    decrement () {
+      this.count--
     }
   }
 }
@@ -91,8 +99,10 @@ input[type=number] {
   border-left-style: hidden;
   outline: none;
   text-align: center;
+  font-size: 16px;
   color: #03AC0E;
   border-color: #9FA6B0;
+  user-select: none;
 }
 .crown {
   margin-right: 3px;
@@ -150,6 +160,11 @@ hr {
     border-left-style: hidden;
     outline: none;
     border-color: #03AC0E;
+  }
+}
+.product-footer {
+  .counter-green {
+    color: #51AD13;
   }
 }
 .loved {
