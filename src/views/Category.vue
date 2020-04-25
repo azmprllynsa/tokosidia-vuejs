@@ -229,15 +229,18 @@ export default {
   // background-color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
+  padding-top: 1px;
   // justify-content: space-between;
   .category-wrap{
-    // background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
+    z-index: 2;
+    // box-shadow: 2px 2px 2px rgb(224, 224, 224);
     .list-category{
       // background-color: brown;
       width: 100%;
@@ -307,6 +310,7 @@ export default {
   .title-wrap-parent{
     padding-top: 50px;
     padding-bottom: 100px;
+    margin-top: 100px;
   }
   .title-wrap{
     display: flex;
