@@ -64,7 +64,6 @@ export default new Vuex.Store({
     SUBMIT_REGISTER (state, data) {
       state.message = data.message
       state.dataUser = data.data
-      localStorage.token = data.data.token
     },
     SUBMIT_LOGIN (state, data) {
       if (data.status !== 200) return
@@ -78,12 +77,9 @@ export default new Vuex.Store({
       axios
         .get(`${process.env.VUE_APP_URL_API}user/1`)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           const peopleDetail = res.data
           commit('SET_PEOPLE_DETAIL', peopleDetail)
-        })
-        .catch(err => {
-          console.log(err)
         })
     },
     submitRegister ({ commit, state }) {

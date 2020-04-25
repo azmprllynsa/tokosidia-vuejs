@@ -1,8 +1,8 @@
 <template>
   <div id="tokosidia">
-    <NavbarHome v-if="$route.name !== 'Login' && $route.name !== 'Register'" />
+    <NavbarHome v-if="$route.name !== 'Login' && $route.name !== 'Register' && $route.name !== 'Confirmation'" />
     <router-view/>
-    <Footer v-if="$route.name !== 'Login' && $route.name !== 'Register'"/>
+    <Footer v-if="$route.name !== 'Login' && $route.name !== 'Register' && $route.name !== 'Confirmation'"/>
     <Modal v-show="$route.name !== 'Login' && $route.name !== 'Register' && $store.state.modalLogin"
     @bg-clicked="$store.state.modalLogin = false"
     widthModal="369px"
