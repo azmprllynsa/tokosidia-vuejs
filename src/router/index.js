@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from '@/store'
 import Home from '@/views/Home.vue'
 import LoginPage from '@/views/auth/LoginPage.vue'
+import Confirm from '@/views/auth/Confirmation.vue'
 import RegisterPage from '@/views/auth/RegisterPage.vue'
 import StoreDetail from '@/views/StoreDetail.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
@@ -26,6 +27,15 @@ const routes = [
     component: Home,
     meta: {
       title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/confirm',
+    name: 'Confirmation',
+    component: Confirm,
+    meta: {
+      title: 'Confirmation Email | Tokosidia',
       requiresAuth: true
     }
   },
