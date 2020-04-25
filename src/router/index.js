@@ -26,8 +26,7 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia',
-      requiresAuth: true
+      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
     }
   },
   {
@@ -35,8 +34,7 @@ const routes = [
     name: 'Confirmation',
     component: Confirm,
     meta: {
-      title: 'Confirmation Email | Tokosidia',
-      requiresAuth: true
+      title: 'Confirmation Email | Tokosidia'
     }
   },
   {
@@ -62,8 +60,7 @@ const routes = [
     name: 'Search',
     component: Search,
     meta: {
-      title: 'Jual | Tokosidia',
-      requiresAuth: true
+      title: 'Jual | Tokosidia'
     }
   },
   {
@@ -71,8 +68,7 @@ const routes = [
     name: 'Cart',
     component: Cart,
     meta: {
-      title: 'Keranjang | Tokosidia',
-      requiresAuth: true
+      title: 'Keranjang | Tokosidia'
     }
 
   },
@@ -81,8 +77,7 @@ const routes = [
     name: 'Shipment',
     component: Shipment,
     meta: {
-      title: 'Checkout | Tokosidia',
-      requiresAuth: true
+      title: 'Checkout | Tokosidia'
     }
 
   },
@@ -91,8 +86,7 @@ const routes = [
     name: 'Category',
     component: Category,
     meta: {
-      title: 'Daftar Produk | Tokosidia',
-      requiresAuth: true
+      title: 'Daftar Produk | Tokosidia'
     }
   },
   {
@@ -100,8 +94,7 @@ const routes = [
     name: 'Listcategory',
     component: Listcategory,
     meta: {
-      title: 'Jual | Tokosidia',
-      requiresAuth: true
+      title: 'Jual | Tokosidia'
     }
   },
   {
@@ -109,8 +102,7 @@ const routes = [
     name: 'Subcategory',
     component: Subcategory,
     meta: {
-      title: ' Jual | Tokosidia',
-      requiresAuth: true
+      title: ' Jual | Tokosidia'
     }
   },
   {
@@ -118,8 +110,7 @@ const routes = [
     name: 'OrderList',
     component: OrderList,
     meta: {
-      title: 'Daftar Transaksi | Tokosidia',
-      requiresAuth: true
+      title: 'Daftar Transaksi | Tokosidia'
     }
   },
   {
@@ -127,8 +118,7 @@ const routes = [
     name: 'People',
     component: People,
     meta: {
-      title: 'User Detail | Tokosidia',
-      requiresAuth: true
+      title: 'User Detail | Tokosidia'
     }
   },
   {
@@ -136,8 +126,7 @@ const routes = [
     name: 'PeopleEdit',
     component: PeopleEdit,
     meta: {
-      title: 'Ubah Profil | Tokosidia',
-      requiresAuth: true
+      title: 'Ubah Profil | Tokosidia'
     }
   },
   {
@@ -145,8 +134,7 @@ const routes = [
     name: 'Store Detail',
     component: StoreDetail,
     meta: {
-      title: 'Rincian Toko | Tokosidia',
-      requiresAuth: true
+      title: 'Rincian Toko | Tokosidia'
     }
   },
   {
@@ -154,8 +142,7 @@ const routes = [
     name: 'Product Detail',
     component: ProductDetail,
     meta: {
-      title: 'Rincian Produk | Tokosidia',
-      requiresAuth: true
+      title: 'Rincian Produk | Tokosidia'
     }
   },
   {
@@ -163,8 +150,7 @@ const routes = [
     name: 'Page Not Found',
     component: PageNotFound,
     meta: {
-      title: 'Halaman Tidak Ditemukan | Tokosidia',
-      requiresAuth: true
+      title: 'Halaman Tidak Ditemukan | Tokosidia'
     }
   }
 ]
@@ -176,8 +162,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters.isLogin) next({ name: 'Login' })
-  else next()
   if (to.matched.some(record => record.meta.requiresVisitor) && store.getters.isLogin) next({ name: 'Home' })
   else next()
 })

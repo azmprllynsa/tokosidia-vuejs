@@ -34,15 +34,121 @@
             <button><img src="@/assets/img/search.png" class="icon-search"></button>
           </form>
         </div>
-        <div class="trolly">
-          <div>
-            <img src="@/assets/img/trolly.png">
+        <div v-if="$store.getters.isLogin" class="user-info login">
+          <div class="icon">
+            <div>
+              <img src="@/assets/img/trolly.png">
+            </div>
+          </div>
+          <div class="icon">
+            <div>
+              <img src="@/assets/img/notification.png">
+            </div>
+          </div>
+          <div class="icon">
+            <div>
+              <img src="@/assets/img/mail.png">
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="user-info-detail">
+            <div class="shop-wrapper">
+              <router-link to="/namatoko">
+                <div class="shop">
+                  <img src="@/assets/img/shopnophoto.png">
+                  <p>Buku Codiinggggg</p>
+                </div>
+              </router-link>
+            </div>
+            <div @mouseenter="hoverUser = true"
+                 @mouseleave="hoverUser = false"
+                 class="user-wrapper">
+              <router-link to="/people/12">
+                <div class="user">
+                  <img src="@/assets/img/defaultphotouser.jpg">
+                  <p>Rahmat Hidayatullah</p>
+                </div>
+              </router-link>
+            </div>
+            <div @mouseenter="hoverUser = true"
+                 @mouseleave="hoverUser = false" class="modal-user" :class="{ roll: hoverUser }">
+              <div class="box-user">
+                <img src="@/assets/img/defaultphotouser.jpg">
+                <div class="info-user">
+                  <h3>Rahmat Hidayatullah</h3>
+                  <p>Akun Terverifikasi</p>
+                </div>
+              </div>
+              <div class="box-user-option">
+                <div class="left-side">
+                  <ul>
+                    <li>
+                      <router-link to="/">
+                        OVO Cash
+                        <span>Rp. 0</span>
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">
+                        Aktivasi
+                      </router-link>
+                    </li>
+                    <div class="lineX"></div>
+                    <li>
+                      <router-link to="/">
+                        Saldo
+                        <span>Rp. 0</span>
+                      </router-link>
+                    </li>
+                    <div class="lineX"></div>
+                    <li>
+                      <router-link to="/">
+                        Toko Points
+                        <span>0 Points</span>
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">
+                        Kupon Saya
+                        <span>7</span>
+                      </router-link>
+                    </li>
+                  </ul>
+                </div>
+                <div class="right-side">
+                  <ul>
+                    <li>
+                      <router-link to="/order-list">Pembelian</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">Wishlist</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">Toko Favorit</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/people/12/edit">Pengaturan</router-link>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li @click="logout" ><a>Keluar <img src="@/assets/img/log-out.svg"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="line"></div>
-        <div class="auth-btn">
-          <button @click="$store.state.modalLogin = true" class="btn btn-secondary">Masuk</button>
-          <button @click="$router.push('/register')" class="btn btn-primary">Daftar</button>
+        <div v-if="!$store.getters.isLogin" class="user-info">
+          <div class="icon trolly">
+            <div>
+              <img src="@/assets/img/trolly.png">
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="auth-btn">
+            <button @click="$store.state.modalLogin = true" class="btn btn-secondary">Masuk</button>
+            <button @click="$router.push('/register')" class="btn btn-primary">Daftar</button>
+          </div>
         </div>
       </div>
     </nav>
@@ -78,7 +184,7 @@
         <div class="list-category__wrapper">
           <div class="list-category">
             <div class="semi-a">
-              <router-link to="/">Buku</router-link>
+              <router-link to="/p/buku">Buku</router-link>
             </div>
           </div>
         </div>
@@ -92,81 +198,22 @@
               <div class="list-sub-category">
                 <div class="list-sub-category__head">
                   <div class="semi-a">
-                    <router-link to="/">Arsitektur & Desain</router-link>
+                    <router-link to="/p/kategori/subkategori">Arsitektur & Desain</router-link>
                   </div>
                 </div>
                 <div class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/">Buku Bangunan</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Bangunan</router-link>
                   </div>
                 </div>
                 <div class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/">Buku Codes Standar</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Codes Standar</router-link>
                   </div>
                 </div>
                 <div class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="list-sub-category">
-                <div class="list-sub-category__head">
-                  <div class="semi-a">
-                    <router-link to="/">Arsitektur & Desain</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Bangunan</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Codes Standar</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="list-sub-category">
-                <div class="list-sub-category__head">
-                  <div class="semi-a">
-                    <router-link to="/">Arsitektur & Desain</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Bangunan</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Codes Standar</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/">Buku Memasak</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Memasak</router-link>
                   </div>
                 </div>
               </div>
@@ -182,7 +229,14 @@
 export default {
   data () {
     return {
-      hoverCategory: false
+      hoverCategory: false,
+      hoverUser: false
+    }
+  },
+  methods: {
+    logout () {
+      delete localStorage.token
+      this.$router.go()
     }
   }
 }
@@ -246,6 +300,10 @@ export default {
           padding: 6px 10px;
           border-radius: 3px;
           background-color: #f3f3f3;
+          display: flex;
+          a {
+            width: 100%;
+          }
         }
       }
     }
@@ -413,47 +471,201 @@ nav {
       }
     }
   }
-  .trolly {
-    margin-left: 20px;
-    div {
-      padding: 5px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover {
-        background-color: #f3f3f3;
-      }
-      img {
-        width: 20px;
-        height: 20px;
-        opacity: .5;
-      }
-    }
-  }
-  .line {
-    height: 20px;
-    border-right: 1.2px solid rgb(214, 214, 214);
-    margin-left: 20px;
-  }
-  .auth-btn {
-    margin-left: 20px;
+  .user-info {
     display: flex;
-    width: 158px;
-    .btn {
-      width: 72.5px;
-      height: 32px;
-      font-weight: 800;
-      border-radius: 8px;
+    align-items: center;
+    .icon {
+      margin-left: 20px;
+      div {
+        padding: 5px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: #f3f3f3;
+        }
+        img {
+          width: 20px;
+          height: 20px;
+          opacity: .5;
+        }
+      }
     }
-    .btn-secondary {
-      color: #03ac0c;
-      border: 1px solid #03ac0c;
-      background-color: white;
+    &.login {
+      position: relative;
+      .icon {
+        margin-left: 10px;
+        &:first-child {
+          margin-left: 20px;
+        }
+        div.icon {
+          padding: 5px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background-color: #f3f3f3;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+            opacity: .5;
+          }
+        }
+      }
+      .user-info-detail {
+        display: flex;
+        padding-left: 17px;
+        .user-wrapper, .shop-wrapper {
+          padding: 12px 0;
+        }
+        .shop, .user {
+          display: flex;
+          align-items: center;
+          padding: 2px 6px;
+          width: 110px;
+          margin-left: 4px;
+          border-radius: 3px;
+          &:hover {
+            background-color: rgb(247, 247, 247);
+            cursor: pointer;
+          }
+          img {
+            height: 25px;
+            object-fit: cover;
+            border-radius: 100px;
+          }
+          p {
+            overflow: hidden;
+            padding: 8px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+        .modal-user {
+          background-color: white;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.081);
+          border-radius: 0 0 8px 8px;
+          height: 0;
+          font-size: 12px;
+          color: #929292;
+          position: absolute;
+          width: 400px;
+          z-index: 3;
+          top: 56px;
+          right: 0;
+          padding: 0 20px 0;
+          overflow: hidden;
+          transition: .3s;
+          &.roll {
+            height: 290px;
+            padding: 10px 20px 20px;
+          }
+          .box-user {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.129);
+            border-radius: 3px;
+            img {
+              display: block;
+              height: 45px;
+              width: 45px;
+              border-radius: 100px;
+            }
+            .info-user {
+              margin-left: 10px;
+              h3 {
+                margin-bottom: 10px;
+                font-size: 15px;
+                color: rgb(64, 64, 64);
+              }
+              p {
+                font-size: 11px;
+              }
+            }
+          }
+          .box-user-option {
+            display: flex;
+            margin: 8px 0 0;
+            line-height: normal;
+            .lineX {
+              border-top: 1.2px solid rgb(214, 214, 214);
+              margin: 7px 16px 7px 0;
+            }
+            li {
+              display: flex;
+              flex-direction: column;
+              a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px;
+                color: rgb(113, 113, 113);
+                font-size: 13px;
+                transition: .2s;
+                cursor: pointer;
+                border-radius: 9px;
+                span {
+                  font-weight: 600;
+                  font-size: 13px;
+                  color: rgb(39, 39, 39);
+                }
+                &:hover {
+                  background-color: rgba(0, 0, 0, 0.047);
+                }
+              }
+            }
+            .left-side {
+              a {
+                margin-right: 8px;
+              }
+              border-right: .8px solid rgba(0, 0, 0, 0.081);
+              flex-grow: 1.5;
+            }
+            .right-side {
+              a {
+                justify-content: flex-start;
+                margin-left: 8px;
+                img {
+                  margin-left: 8px;
+                  width: 20px;
+                  object-fit: contain;
+                }
+              }
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              flex-grow: 1;
+            }
+          }
+        }
+      }
     }
-    .btn-primary {
-      margin-left: 10px;
-      color: white;
-      border: 1px solid #03ac0c;
-      background-color: #03ac0c;
+    .line {
+      height: 20px;
+      border-right: 1.2px solid rgb(214, 214, 214);
+      margin-left: 20px;
+    }
+    .auth-btn {
+      margin-left: 20px;
+      display: flex;
+      width: 158px;
+      .btn {
+        width: 72.5px;
+        height: 32px;
+        font-weight: 800;
+        border-radius: 8px;
+      }
+      .btn-secondary {
+        color: #03ac0c;
+        border: 1px solid #03ac0c;
+        background-color: white;
+      }
+      .btn-primary {
+        margin-left: 10px;
+        color: white;
+        border: 1px solid #03ac0c;
+        background-color: #03ac0c;
+      }
     }
   }
 }
