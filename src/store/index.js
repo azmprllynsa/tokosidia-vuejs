@@ -65,6 +65,12 @@ export default new Vuex.Store({
       state.message = data.message
       state.dataUser = data.data
       localStorage.token = data.data.token
+    },
+    SUBMIT_LOGIN (state, data) {
+      if (data.status !== 200) return
+      state.message = data.message
+      state.dataUser = data.data
+      localStorage.token = data.data.token
     }
   },
   actions: {
@@ -94,6 +100,20 @@ export default new Vuex.Store({
           .post(`${process.env.VUE_APP_URL_API}user/register`, data)
           .then(res => {
             commit('SUBMIT_REGISTER', res.data)
+            resolve(res)
+          })
+      })
+    },
+    submitLogin ({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        const data = {
+          email: state.dataForm.email,
+          password: state.dataForm.password
+        }
+        axios
+          .post(`${process.env.VUE_APP_URL_API}user/login`, data)
+          .then(res => {
+            commit('SUBMIT_LOGIN', res.data)
             resolve(res)
           })
       })

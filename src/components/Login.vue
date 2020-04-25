@@ -18,7 +18,7 @@
       </form>
     </section>
     <section class="modal-body">
-      <form @submit.prevent :class="{ hide: !$store.getters.dataForm.currentForm, nextIn: $store.getters.dataForm.currentForm }">
+      <form @submit.prevent="submitLogin" :class="{ hide: !$store.getters.dataForm.currentForm, nextIn: $store.getters.dataForm.currentForm }">
         <label>Email</label>
         <div class="input-user">
           <span>{{ $store.getters.dataForm.email }}</span>
@@ -32,7 +32,7 @@
             <img @click="$store.commit('TOGGLE_HIDDEN')" class="pass-visible" src="@/assets/img/pass-visible.png">
           </div>
           <div class="input-info">
-            <small :class="{ hide: !$store.getters.dataForm.errorPassword, red: $store.getters.dataForm.errorPassword }">Kata sandi harus diisi</small>
+            <small :class="{ hide: !$store.getters.dataForm.errorPassword, red: $store.getters.dataForm.errorPassword }">Email / Kata Sandi salah</small>
           </div>
         </div>
         <div class="input-group checkbox">
@@ -53,7 +53,20 @@
 
 <script>
 export default {
-  props: ['resetWrapper']
+  props: ['resetWrapper'],
+  methods: {
+    submitLogin () {
+      this.$store.dispatch('submitLogin')
+        .then(res => {
+          if (res.data.status !== 200) {
+            this.$store.state.dataForm.errorPassword = true
+            return
+          }
+          this.$store.state.dataForm.errorPassword = false
+          this.$router.go('/')
+        })
+    }
+  }
 }
 </script>
 
