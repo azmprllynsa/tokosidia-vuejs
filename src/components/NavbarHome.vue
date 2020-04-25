@@ -226,6 +226,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -238,7 +240,13 @@ export default {
       delete localStorage.token
       this.$router.go()
     }
-  }
+  },
+  created () {
+    this.$store.dispatch('loadPeopleDetail')
+  },
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 
