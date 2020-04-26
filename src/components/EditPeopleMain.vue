@@ -37,7 +37,7 @@
                 <h3 class="text-2xl text-bold">Ubah Kata Sandi</h3>
               </div>
               <div class="mt-20">
-                <form id="formpass" action="" class="flex-col">
+                <form id="formpass" class="flex-col">
                   <label for="password">Masukkan Kata Sandi Baru</label>
                   <input type="password" name="password" id="password" v-model="password" :class="!$v.password.$error ? '' : 'border-red'" class="mt-10 modal-textfield">
                   <p class="mt-5 text-red" v-if="!$v.password.required">Kata Sandi harus diisi</p>
@@ -49,7 +49,7 @@
               </div>
               <div class="btn-pass mt-20 flex-row justify-center items-center">
                 <button @click="passModal = !passModal" class="pass-cancel text-lg text-bold">Batal</button>
-                <button @click="updatePass" class="pass-submit text-lg text-bold" type="submit" form="formpass">Ubah</button>
+                <button @click="updatePass" class="pass-submit text-lg text-bold" form="formpass">Ubah</button>
               </div>
             </ModalContainer>
             <button class="text-white btn-green"><i class="fas fa-lock"></i> PIN Tokopedia</button>
@@ -164,7 +164,7 @@ export default {
   name: 'EditPeopleMain',
   data () {
     return {
-      passModal: true,
+      passModal: false,
       nameModal: false,
       emailModal: false,
       phoneModal: false,
