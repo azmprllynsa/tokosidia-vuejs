@@ -28,7 +28,7 @@
                :class="{ onhover: hoverCategory }"
           >Kategori</div>
         </div>
-        <SearchBox placeholder="Cari jodoh" />
+        <SearchBox :placeholder="placeholder[Math.round(Math.random() * 3)]" />
         <div v-if="$store.getters.isLogin" class="user-info login">
           <div class="icon">
             <div>
@@ -179,7 +179,7 @@
         <div class="list-category__wrapper">
           <div class="list-category">
             <div v-for="(cat, i) in categoryList" :key="i" class="semi-a" @mouseenter="categoryActive(cat)" :class="{ 'category-active': cat.id === currentCategory.id }">
-              <a>{{ cat.name || 'Please wait...' }}</a>
+              <a>{{ cat.name || '' }}</a>
             </div>
             <!-- <div class="semi-a">
               <a>Buku</a>
@@ -190,19 +190,19 @@
           <div class="sub-category">
             <div class="sub-category__head">
               <img src="@/assets/img/category-book.png">
-              <h2>{{ catActived.name || categoryList[0].name }}</h2>
+              <h2>{{ catActived.name || categoryList[0].name || '' }}</h2>
               <!-- <h2>{{ currentCategory.name }}</h2> -->
             </div>
             <div class="sub-category__body">
               <div v-for="(sc, i) in catActived.SubCategory" :key="i" class="list-sub-category">
                 <div class="list-sub-category__head">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori">{{ sc.name }}</router-link>
+                    <router-link to="/p/kategori/subkategori">{{ sc.name || '' }}</router-link>
                   </div>
                 </div>
                 <div v-for="(ssc, i) in sc.SubSubCategory" :key="i" class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">{{ ssc.name }}</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">{{ ssc.name || '' }}</router-link>
                   </div>
                 </div>
               </div>
@@ -245,7 +245,8 @@ export default {
     },
     ...mapState([
       'peopleDetail',
-      'categoryList'
+      'categoryList',
+      'placeholder'
     ])
   }
 }
