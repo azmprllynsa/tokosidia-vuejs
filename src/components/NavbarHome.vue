@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="bg-modal"
-         :class="{ fade: hoverCategory }"></div>
+         :class="{ fade: hoverCategory || hoverUser }"></div>
     <nav>
       <div class="sub-nav">
         <div class="promo-app">
@@ -28,12 +28,7 @@
                :class="{ onhover: hoverCategory }"
           >Kategori</div>
         </div>
-        <div class="search">
-          <form @submit.prevent>
-            <input type="text" placeholder="Cari es batu">
-            <button><img src="@/assets/img/search.png" class="icon-search"></button>
-          </form>
-        </div>
+        <SearchBox placeholder="Cari jodoh" />
         <div v-if="$store.getters.isLogin" class="user-info login">
           <div class="icon">
             <div>
@@ -226,6 +221,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import SearchBox from '@/components/SearchBox.vue'
+
 export default {
   data () {
     return {
@@ -233,12 +231,21 @@ export default {
       hoverUser: false
     }
   },
+  components: {
+    SearchBox
+  },
   methods: {
     logout () {
       delete localStorage.token
       this.$router.go()
     }
-  }
+  },
+  created () {
+    this.$store.dispatch('loadPeopleDetail')
+  },
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 
@@ -252,11 +259,11 @@ export default {
   left: 0;
   bottom: 0;
   z-index: 1;
-  transition: .4s;
+  transition: .2s;
 }
 .fade {
   visibility: visible;
-  background-color: rgba(0, 0, 0, 0.411);
+  background-color: rgba(0, 0, 0, 0.598);
 }
 .modal-category {
   background-color: white;
@@ -436,39 +443,6 @@ nav {
     .semi-btn {
       cursor: pointer;
       padding: 8.5px 6px;
-    }
-  }
-  .search {
-    width: 100%;
-    form {
-      border: 1px solid #dddddd;
-      border-radius: 7px;
-      display: flex;
-      overflow: hidden;
-      transition: .4s;
-      &:active {
-        border: 1px solid #03ac0c;
-      }
-      input {
-        font-size: 12px;
-        color: #929292;
-        background-color: transparent;
-        outline: none;
-        border: none;
-        padding: 6px 10px;
-        width: 100%;
-      }
-      button {
-        background-color: #dadada;
-        width: 35px;
-        border: none;
-        .icon-search {
-          height: 20px;
-          width: 20px;
-          margin-top: 4px;
-          opacity: .3;
-        }
-      }
     }
   }
   .user-info {

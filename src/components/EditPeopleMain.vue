@@ -110,7 +110,7 @@ export default {
   components: {
     ModalContainer
   },
-  mounted () {
+  created () {
     this.$store.dispatch('loadPeopleDetail')
   },
   computed: mapState([
