@@ -27,7 +27,9 @@ export default new Vuex.Store({
     productDetail: {},
     categoryList: [],
     products: [],
-    modalLogin: false
+    modalLogin: false,
+    shipmentDetail: {},
+    totalAll: 0
   },
   getters: {
     dataForm: state => state.dataForm,
@@ -82,6 +84,12 @@ export default new Vuex.Store({
       if (data.status !== 200) return
       state.message = data.message
       localStorage.token = data.data.token
+    },
+    MOVE_TO_SHIPMENT (state, dataProductDynamic) {
+      state.shipmentDetail = dataProductDynamic
+    },
+    SET_TOTAL_CHECKOUT (state, total) {
+      state.totalAll = total
     }
   },
   actions: {

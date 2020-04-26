@@ -23,13 +23,13 @@
               <span class="checkmark"></span>
             </label>
           </div>
-          <ShoppingSummaryBtn @click="paymentModal = !paymentModal" :btnText="btnText"/>
+          <ShoppingSummaryBtn @button-click="paymentModal = true" :btnText="btnText"/>
         </ShoppingSummary>
       </div>
     </div>
-    <ModalContainer :class="paymentModal ? '' : 'hidden'" class="payment-modal">
+    <ModalContainer @bg-clicked="paymentModal = false" v-show="paymentModal" widthModal="500px" class="payment-modal hidden">
       <div class="header">
-        <i @click="paymentModal = !paymentModal" class="fas fa-times"></i>
+        <i @click="paymentModal = false" class="fas fa-times"></i>
         <h3>Pilih Metode Pembayaran</h3>
       </div>
       <div class="main">
