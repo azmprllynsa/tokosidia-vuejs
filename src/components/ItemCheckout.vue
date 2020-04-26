@@ -13,7 +13,7 @@
           <img src="https://ecs7.tokopedia.net/img/cache/200-square/attachment/2018/8/9/3127195/3127195_c6f70915-577f-4cd4-834c-daf892265ef0.jpg.webp" width="70px" height="70px" alt="">
           <div class="ml-10">
             <h3 class="text-md text-bold">{{ shipmentDetail.product.name }}</h3>
-            <p class="mt-15 text-md text-bold text-red">Rp. {{ shipmentDetail.totalPrice }}</p>
+            <p class="mt-15 text-md text-bold text-red">Rp. {{ shipmentDetail.product.price }}</p>
             <p class="mt-10 text-md text-soft-gray">{{ shipmentDetail.amount }} barang ({{ weightComputed }})</p>
             <p class="mt-15 text-soft-gray">Maroon, biru navy, sama putih. Masing masing 1</p>
           </div>
