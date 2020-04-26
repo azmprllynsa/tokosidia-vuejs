@@ -1,7 +1,7 @@
 <template>
   <div :style="{ width: customWidth || '100%' }" class="search">
-    <form @submit.prevent="$emit('getValue', searchValue)">
-      <input type="text" v-model="searchValue" :placeholder="placeholder || 'Cari es batu'">
+    <form :class="{ active: inputFocus }" @submit.prevent="$emit('getValue', searchValue), inputFocus = false">
+      <input @focusin="inputFocus = true" @focusout="inputFocus = false" type="text" v-model="searchValue" :placeholder="placeholder || 'Cari es batu'">
       <button><img src="@/assets/img/search.png" class="icon-search"></button>
     </form>
   </div>
@@ -13,7 +13,8 @@ export default {
   props: ['customWidth', 'placeholder'],
   data () {
     return {
-      searchValue: ''
+      searchValue: '',
+      inputFocus: false
     }
   }
 }
@@ -28,7 +29,7 @@ export default {
     display: flex;
     overflow: hidden;
     transition: .4s;
-    &:active {
+    &.active {
       border: 1px solid #03ac0c;
     }
     input {
