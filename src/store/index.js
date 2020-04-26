@@ -21,6 +21,8 @@ export default new Vuex.Store({
       hiddenPassword: true
     },
     message: null,
+    dataUser: {},
+    categoryList: [],
     peopleDetail: {},
     products: {},
     modalLogin: false
@@ -33,6 +35,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    GET_CATEGORY_LIST (state, categoryList) {
+      state.categoryList = categoryList
+    },
     SET_PEOPLE_DETAIL (state, peopleDetail) {
       state.peopleDetail = peopleDetail
     },
@@ -93,6 +98,14 @@ export default new Vuex.Store({
         .then(res => {
           const products = res.data
           commit('SET_PRODUCTS', products)
+      })
+    },
+    categoryList ({ commit }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}category`)
+        .then(res => {
+          const categoryList = res.data.data
+          commit('GET_CATEGORY_LIST', categoryList)
         })
     },
     submitRegister ({ commit, state }) {
