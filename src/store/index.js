@@ -160,6 +160,14 @@ export default new Vuex.Store({
           console.log(peopleData)
           console.log(res)
         })
+    },
+    updatePass ({ commit, state }, passData) {
+      axios
+        .patch(`${process.env.VUE_APP_URL_API}user/resetpassword/${state.peopleDetail.id}`, passData)
+        .then(res => {
+          console.log(passData)
+          console.log(res)
+        })
     }
   },
   modules: {
