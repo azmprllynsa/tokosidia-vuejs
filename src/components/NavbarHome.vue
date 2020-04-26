@@ -28,7 +28,8 @@
                :class="{ onhover: hoverCategory }"
           >Kategori</div>
         </div>
-        <SearchBox :placeholder="placeholder[Math.round(Math.random() * 3)]" />
+        <SearchBox :placeholder="placeholder[Math.round(Math.random() * 3)]"
+                   @getValue="submitSearch" />
         <div v-if="$store.getters.isLogin" class="user-info login">
           <div class="icon">
             <div>
@@ -48,17 +49,23 @@
           <div class="line"></div>
           <div class="user-info-detail">
             <div class="shop-wrapper">
-              <router-link to="/namatoko">
+              <a v-if="peopleDetail.role === '1'">
                 <div class="shop">
                   <img src="@/assets/img/shopnophoto.png">
-                  <p>Buku Codiinggggg</p>
+                  <p>Toko</p>
+                </div>
+              </a>
+              <router-link v-if="peopleDetail.role === '2'" :to="'/' + peopleDetail.seller_id">
+                <div class="shop">
+                  <img src="@/assets/img/seller_no_logo_1.png">
+                  <p>{{ peopleDetail.store.name }}</p>
                 </div>
               </router-link>
             </div>
             <div @mouseenter="hoverUser = true"
                  @mouseleave="hoverUser = false"
                  class="user-wrapper">
-              <router-link to="/people/12">
+              <router-link :to="'/people/' + peopleDetail.id">
                 <div class="user">
                   <img src="@/assets/img/defaultphotouser.jpg">
                   <p>{{ peopleDetail.fullname }}</p>
@@ -122,7 +129,7 @@
                       <router-link to="/">Toko Favorit</router-link>
                     </li>
                     <li>
-                      <router-link to="/people/12/edit">Pengaturan</router-link>
+                      <router-link :to="'/people/' + peopleDetail.id + '/edit'">Pengaturan</router-link>
                     </li>
                   </ul>
                   <ul>
@@ -237,6 +244,9 @@ export default {
     categoryActive (data) {
       this.catActived = data
       this.$store.dispatch('categoryList')
+    },
+    submitSearch (data) {
+      // console.log(data)
     }
   },
   computed: {
