@@ -3,13 +3,13 @@
     <div class="header">
       <div class="header-wrapper">
         <div class="header-img">
-          <img src="@/assets/img/contoh-header-img.jpg">
+          <img src="@/assets/img/seller_no_cover_0.png">
         </div>
         <div class="header-info">
           <div class="info-wrapper">
             <div class="store-info1">
               <div class="profile-photo">
-                <img src="@/assets/img/contoh-foto-profil.jpg">
+                <img src="@/assets/img/seller_no_logo_1.png">
               </div>
               <div class="detail">
                 <div class="store-name">

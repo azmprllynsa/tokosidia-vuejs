@@ -187,7 +187,7 @@ export default {
     flex-direction: column;
     position: absolute;
     top: 0%;
-    transition: .3s;
+    transition: .2s;
   }
   &:hover .text-info-wrapper {
     top: -100%;

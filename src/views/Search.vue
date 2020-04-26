@@ -7,17 +7,20 @@
       <div class="search-nav">
         <div @click="searchNavbar = 1" class="product"
              :class="{ active: searchNavbar === 1 }">
-          <img :src="require(`@/assets/img/search-product${ searchNavbar === 1 ? '-active' : '' }.svg`)">
+          <img v-if="searchNavbar === 1" src="@/assets/img/search-product-active.svg">
+          <img v-else src="@/assets/img/search-product.svg">
           <p :style="{ color: searchNavbar === 1 ? '#42b549' : '' }" >Produk</p>
         </div>
         <div @click="searchNavbar = 2" class="store"
              :class="{ active: searchNavbar === 2 }">
-          <img :src="require(`@/assets/img/search-store${ searchNavbar === 2 ? '-active' : '' }.svg`)">
+          <img v-if="searchNavbar === 2" src="@/assets/img/search-store-active.svg">
+          <img v-else src="@/assets/img/search-store.svg">
           <p :style="{ color: searchNavbar === 2 ? '#42b549' : '' }" >Toko</p>
         </div>
         <div @click="searchNavbar = 3" class="profile"
              :class="{ active: searchNavbar === 3 }">
-          <img :src="require(`@/assets/img/search-profile${ searchNavbar === 3 ? '-active' : '' }.svg`)">
+          <img v-if="searchNavbar === 3" src="@/assets/img/search-profile-active.svg">
+          <img v-else src="@/assets/img/search-profile.svg">
           <p :style="{ color: searchNavbar === 3 ? '#42b549' : '' }" >Profile</p>
         </div>
       </div>
