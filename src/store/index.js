@@ -20,6 +20,7 @@ export default new Vuex.Store({
       typePassword: 'password',
       hiddenPassword: true
     },
+    placeholder: ['Cari jodoh', 'Cari es batu', 'Cari dukun santet', 'Cari apa ya?'],
     message: null,
     dataUser: {},
     categoryList: [],
