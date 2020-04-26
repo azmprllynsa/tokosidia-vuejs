@@ -29,7 +29,7 @@
               <div class="store-name-location">
                 <div class="text-info-wrapper">
                   <p>{{ data.users.fullname }}</p>
-                  <p>{{ data.users.addresses[0].address }}</p>
+                  <p>{{ data.users.addresses[0].address || '' }}</p>
                 </div>
               </div>
             </div>
