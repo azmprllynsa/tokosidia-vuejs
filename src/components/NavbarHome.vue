@@ -178,37 +178,31 @@
       <div class="modal-category__body">
         <div class="list-category__wrapper">
           <div class="list-category">
-            <div class="semi-a">
-              <router-link to="/p/buku">Buku</router-link>
+            <div v-for="(cat, i) in categoryList" :key="i" class="semi-a" @mouseenter="categoryActive(cat)" :class="{ 'category-active': cat.id === currentCategory.id }">
+              <a>{{ cat.name || 'Please wait...' }}</a>
             </div>
+            <!-- <div class="semi-a">
+              <a>Buku</a>
+            </div> -->
           </div>
         </div>
         <div class="sub-category__wrapper">
           <div class="sub-category">
             <div class="sub-category__head">
               <img src="@/assets/img/category-book.png">
-              <h2>Buku</h2>
+              <h2>{{ catActived.name || categoryList[0].name }}</h2>
+              <!-- <h2>{{ currentCategory.name }}</h2> -->
             </div>
             <div class="sub-category__body">
-              <div class="list-sub-category">
+              <div v-for="(sc, i) in catActived.SubCategory" :key="i" class="list-sub-category">
                 <div class="list-sub-category__head">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori">Arsitektur & Desain</router-link>
+                    <router-link to="/p/kategori/subkategori">{{ sc.name }}</router-link>
                   </div>
                 </div>
-                <div class="list-sub-category__body">
+                <div v-for="(ssc, i) in sc.SubSubCategory" :key="i" class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Bangunan</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Codes Standar</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Memasak</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">{{ ssc.name }}</router-link>
                   </div>
                 </div>
               </div>
@@ -228,7 +222,8 @@ export default {
   data () {
     return {
       hoverCategory: false,
-      hoverUser: false
+      hoverUser: false,
+      catActived: {}
     }
   },
   components: {
@@ -238,14 +233,21 @@ export default {
     logout () {
       delete localStorage.token
       this.$router.go()
+    },
+    categoryActive (data) {
+      this.catActived = data
+      this.$store.dispatch('categoryList')
     }
   },
-  created () {
-    this.$store.dispatch('loadPeopleDetail')
-  },
-  computed: mapState([
-    'peopleDetail'
-  ])
+  computed: {
+    currentCategory () {
+      return this.$store.state.categoryList[0]
+    },
+    ...mapState([
+      'peopleDetail',
+      'categoryList'
+    ])
+  }
 }
 </script>
 
@@ -301,15 +303,24 @@ export default {
       border-right: 1px solid #dfdfdf;
       overflow: auto;
       .list-category {
-        padding: 0 8px;
+        padding: 0 8px 0 0;
         .semi-a {
           margin-top: 8px;
-          padding: 6px 10px;
-          border-radius: 3px;
-          background-color: #f3f3f3;
+          border-radius: 4px;
           display: flex;
+          transition: .2s;
           a {
             width: 100%;
+            padding: 8px 14px;
+            color: rgb(39, 39, 39);
+            font-weight: 600;
+            cursor: pointer;
+          }
+          &:hover {
+            background-color: #f3f3f3;
+          }
+          &.category-active {
+            background-color: #f3f3f3;
           }
         }
       }
