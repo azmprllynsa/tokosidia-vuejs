@@ -24,6 +24,7 @@ export default new Vuex.Store({
     dataUser: {},
     categoryList: [],
     peopleDetail: {},
+    products: {},
     modalLogin: false
   },
   getters: {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     SET_PEOPLE_DETAIL (state, peopleDetail) {
       state.peopleDetail = peopleDetail
+    },
+    SET_PRODUCTS (state, products) {
+      state.products = products
     },
     TOGGLE_HIDDEN (state) {
       state.dataForm.hiddenPassword = !state.dataForm.hiddenPassword
@@ -86,6 +90,14 @@ export default new Vuex.Store({
             const peopleDetail = res.data
             commit('SET_PEOPLE_DETAIL', peopleDetail)
           })
+      })
+    },
+    loadProducts ({ commit }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}product/`)
+        .then(res => {
+          const products = res.data
+          commit('SET_PRODUCTS', products)
       })
     },
     categoryList ({ commit }) {
