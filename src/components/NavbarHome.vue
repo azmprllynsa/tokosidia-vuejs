@@ -28,7 +28,8 @@
                :class="{ onhover: hoverCategory }"
           >Kategori</div>
         </div>
-        <SearchBox placeholder="Cari jodoh" />
+        <SearchBox :placeholder="placeholder[Math.round(Math.random() * 3)]"
+                   @getValue="submitSearch" />
         <div v-if="$store.getters.isLogin" class="user-info login">
           <div class="icon">
             <div>
@@ -48,20 +49,26 @@
           <div class="line"></div>
           <div class="user-info-detail">
             <div class="shop-wrapper">
-              <router-link to="/namatoko">
+              <a v-if="peopleDetail.role === '1'">
                 <div class="shop">
                   <img src="@/assets/img/shopnophoto.png">
-                  <p>Buku Codiinggggg</p>
+                  <p>Toko</p>
+                </div>
+              </a>
+              <router-link v-if="peopleDetail.role === '2'" :to="'/' + peopleDetail.seller_id">
+                <div class="shop">
+                  <img src="@/assets/img/seller_no_logo_1.png">
+                  <p>{{ peopleDetail.store.name }}</p>
                 </div>
               </router-link>
             </div>
             <div @mouseenter="hoverUser = true"
                  @mouseleave="hoverUser = false"
                  class="user-wrapper">
-              <router-link to="/people/12">
+              <router-link :to="'/people/' + peopleDetail.id">
                 <div class="user">
                   <img src="@/assets/img/defaultphotouser.jpg">
-                  <p>Rahmat Hidayatullah</p>
+                  <p>{{ peopleDetail.fullname }}</p>
                 </div>
               </router-link>
             </div>
@@ -70,7 +77,7 @@
               <div class="box-user">
                 <img src="@/assets/img/defaultphotouser.jpg">
                 <div class="info-user">
-                  <h3>Rahmat Hidayatullah</h3>
+                  <h3>{{ peopleDetail.fullname }}</h3>
                   <p>Akun Terverifikasi</p>
                 </div>
               </div>
@@ -122,7 +129,7 @@
                       <router-link to="/">Toko Favorit</router-link>
                     </li>
                     <li>
-                      <router-link to="/people/12/edit">Pengaturan</router-link>
+                      <router-link :to="'/people/' + peopleDetail.id + '/edit'">Pengaturan</router-link>
                     </li>
                   </ul>
                   <ul>
@@ -178,37 +185,31 @@
       <div class="modal-category__body">
         <div class="list-category__wrapper">
           <div class="list-category">
-            <div class="semi-a">
-              <router-link to="/p/buku">Buku</router-link>
+            <div v-for="(cat, i) in categoryList" :key="i" class="semi-a" @mouseenter="categoryActive(cat)" :class="{ 'category-active': cat.id === currentCategory.id }">
+              <a>{{ cat.name || '' }}</a>
             </div>
+            <!-- <div class="semi-a">
+              <a>Buku</a>
+            </div> -->
           </div>
         </div>
         <div class="sub-category__wrapper">
           <div class="sub-category">
             <div class="sub-category__head">
               <img src="@/assets/img/category-book.png">
-              <h2>Buku</h2>
+              <h2>{{ catActived.name || categoryList[0].name || '' }}</h2>
+              <!-- <h2>{{ currentCategory.name }}</h2> -->
             </div>
             <div class="sub-category__body">
-              <div class="list-sub-category">
+              <div v-for="(sc, i) in catActived.SubCategory" :key="i" class="list-sub-category">
                 <div class="list-sub-category__head">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori">Arsitektur & Desain</router-link>
+                    <router-link to="/p/kategori/subkategori">{{ sc.name || '' }}</router-link>
                   </div>
                 </div>
-                <div class="list-sub-category__body">
+                <div v-for="(ssc, i) in sc.SubSubCategory" :key="i" class="list-sub-category__body">
                   <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Bangunan</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Codes Standar</router-link>
-                  </div>
-                </div>
-                <div class="list-sub-category__body">
-                  <div class="semi-a">
-                    <router-link to="/p/kategori/subkategori/subsubkategori">Buku Memasak</router-link>
+                    <router-link to="/p/kategori/subkategori/subsubkategori">{{ ssc.name || '' }}</router-link>
                   </div>
                 </div>
               </div>
@@ -228,7 +229,8 @@ export default {
   data () {
     return {
       hoverCategory: false,
-      hoverUser: false
+      hoverUser: false,
+      catActived: {}
     }
   },
   components: {
@@ -238,14 +240,25 @@ export default {
     logout () {
       delete localStorage.token
       this.$router.go()
+    },
+    categoryActive (data) {
+      this.catActived = data
+      this.$store.dispatch('categoryList')
+    },
+    submitSearch (data) {
+      // console.log(data)
     }
   },
-  created () {
-    this.$store.dispatch('loadPeopleDetail')
-  },
-  computed: mapState([
-    'peopleDetail'
-  ])
+  computed: {
+    currentCategory () {
+      return this.$store.state.categoryList[0]
+    },
+    ...mapState([
+      'peopleDetail',
+      'categoryList',
+      'placeholder'
+    ])
+  }
 }
 </script>
 
@@ -258,7 +271,7 @@ export default {
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   transition: .2s;
 }
 .fade {
@@ -301,15 +314,24 @@ export default {
       border-right: 1px solid #dfdfdf;
       overflow: auto;
       .list-category {
-        padding: 0 8px;
+        padding: 0 8px 0 0;
         .semi-a {
           margin-top: 8px;
-          padding: 6px 10px;
-          border-radius: 3px;
-          background-color: #f3f3f3;
+          border-radius: 4px;
           display: flex;
+          transition: .2s;
           a {
             width: 100%;
+            padding: 8px 14px;
+            color: rgb(39, 39, 39);
+            font-weight: 600;
+            cursor: pointer;
+          }
+          &:hover {
+            background-color: #f3f3f3;
+          }
+          &.category-active {
+            background-color: #f3f3f3;
           }
         }
       }
@@ -335,8 +357,7 @@ export default {
           }
         }
         .sub-category__body {
-          max-height: 1000px;
-          height: 1000px;
+          min-height: 500px;
           column-count: 5;
           column-fill: auto;
           overflow: hidden;

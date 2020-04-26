@@ -1,6 +1,6 @@
 <template>
   <div class="card-product">
-    <router-link :to="`/${$route.params.storename}/namaproduk`">
+    <router-link :to="`/${data.seller_id}/${data.id}`">
       <div class="whitelist">
         <div class="love">
           <img src="">
@@ -14,28 +14,28 @@
           <div :class="unggulan ? 'super' : 'common'"
                 :style="{ backgroundImage: `url(${require('@/assets/img/unggulan.png')})` }">
             <span v-if="unggulan" class="unggulan">Produk Unggulan</span>
-            <span class="title-product">{{ data.name }}</span>
+            <span class="title-product">{{ data.name || '' }}</span>
             <div class="prices">
               <div class="discount">
                 <div class="discount-number" >76%</div>
                 <div class="discount-price">Rp. 889.000</div>
               </div>
               <div class="product-price">
-                <span>Rp. {{ data.price || "0"}}</span>
+                <span>Rp. {{ data.price || 0 }}</span>
               </div>
             </div>
             <div v-if="storeName" class="store-info">
               <img class="label-store" src="@/assets/img/label-store-icon.svg">
               <div class="store-name-location">
                 <div class="text-info-wrapper">
-                  <p>{{ data.users.fullname }}</p>
-                  <p>Lokasi Toko</p>
+                  <p>Nama Seller</p>
+                  <p>Indonesia</p>
                 </div>
               </div>
             </div>
             <div class="rating">
               <div class="stars">
-                <img v-for="(star, i) in Math.ceil(parseInt(data.rating)/2)" :key="i + 1" src="@/assets/img/star.png">
+                <img v-for="(star, i) in Math.ceil(parseInt(data.rating || 10)/2)" :key="i + 1" src="@/assets/img/star.png">
               </div>
               <span class="testimo-total">(183)</span>
             </div>

@@ -69,9 +69,9 @@ const routes = [
     name: 'Cart',
     component: Cart,
     meta: {
-      title: 'Keranjang | Tokosidia'
+      title: 'Keranjang | Tokosidia',
+      requiresAuth: true
     }
-
   },
   {
     path: '/cart/shipment',
@@ -91,7 +91,7 @@ const routes = [
     }
   },
   {
-    path: '/p/:listcategory',
+    path: '/p/:idC',
     name: 'Listcategory',
     component: Listcategory,
     meta: {
@@ -99,7 +99,7 @@ const routes = [
     }
   },
   {
-    path: '/p/:listcategory/:subcategory',
+    path: '/p/:idC/:idSC',
     name: 'Subcategory',
     component: Subcategory,
     meta: {
@@ -115,7 +115,7 @@ const routes = [
     }
   },
   {
-    path: '/people/:id',
+    path: '/people/:idPeople',
     name: 'People',
     component: People,
     meta: {
@@ -123,7 +123,7 @@ const routes = [
     }
   },
   {
-    path: '/people/:id/edit',
+    path: '/people/:idPeople/edit',
     name: 'PeopleEdit',
     component: PeopleEdit,
     meta: {
@@ -131,7 +131,7 @@ const routes = [
     }
   },
   {
-    path: '/people/:id/add-product',
+    path: '/people/:idPeople/add-product',
     name: ' Add Product',
     component: AddProduct,
     meta: {
@@ -139,7 +139,7 @@ const routes = [
     }
   },
   {
-    path: '/:storename',
+    path: '/:idStore',
     name: 'Store Detail',
     component: StoreDetail,
     meta: {
@@ -147,7 +147,7 @@ const routes = [
     }
   },
   {
-    path: '/:storename/:productname',
+    path: '/:idStore/:idProduct',
     name: 'Product Detail',
     component: ProductDetail,
     meta: {
@@ -171,6 +171,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters.isLogin) next({ name: 'Login' })
+  else next()
   if (to.matched.some(record => record.meta.requiresVisitor) && store.getters.isLogin) next({ name: 'Home' })
   else next()
 })

@@ -3,7 +3,7 @@
     <!-- <div v-for="data in peopleDetail" :key="data.id"> -->
       <div class="main-header">
         <img src="https://ecs7.tokopedia.net/img/user/setting/icon-people.svg" alt="User Icon">
-        <p class="text-bold">{{ peopleDetail.data.fullname }}</p>
+        <p class="text-bold">{{ peopleDetail.fullname }}</p>
       </div>
       <div class="main-content">
         <nav>
@@ -28,7 +28,26 @@
                 <p class="text-md text-gray">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</p>
               </div>
             </div>
-            <button class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
+            <button @click="passModal = !passModal" class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
+            <ModalContainer :class="passModal ? '' : 'hidden'" class="edit-name-modal">
+              <div class="w-full flex-col justify-end items-end">
+                <img @click="passModal = !passModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+              </div>
+              <div class="flex-col justify-center items-center">
+                <h3 class="text-2xl text-bold">Ubah Nama</h3>
+                <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
+              </div>
+              <div class="mt-20">
+                <form id="form" action="" class="flex-col">
+                  <label for="fullname">Nama</label>
+                  <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
+                  <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
+                </form>
+              </div>
+              <div class="mt-50 flex-row justify-center items-center">
+                <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+              </div>
+            </ModalContainer>
             <button class="text-white btn-green"><i class="fas fa-lock"></i> PIN Tokopedia</button>
           </div>
           <div class="biodata-section">
@@ -37,11 +56,11 @@
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Nama</div>
                 <div class="name-edit">
-                  <p>{{ peopleDetail.data.fullname }}</p>
-                  <button @click="showModal = !showModal" class="btn-borderless text-green hover-red">Ubah</button>
-                  <ModalContainer :class="showModal ? '' : 'hidden'" class="edit-name-modal">
+                  <p>{{ peopleDetail.fullname }}</p>
+                  <button @click="nameModal = !nameModal" class="btn-borderless text-green hover-red">Ubah</button>
+                  <ModalContainer :class="nameModal ? '' : 'hidden'" class="edit-name-modal">
                     <div class="w-full flex-col justify-end items-end">
-                      <img @click="showModal = !showModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+                      <img @click="nameModal = !nameModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
                     </div>
                     <div class="flex-col justify-center items-center">
                       <h3 class="text-2xl text-bold">Ubah Nama</h3>
@@ -50,12 +69,12 @@
                     <div class="mt-20">
                       <form id="form" action="" class="flex-col">
                         <label for="fullname">Nama</label>
-                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.data.fullname" class="mt-10 modal-textfield">
+                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
                         <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -74,17 +93,53 @@
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Email</div>
                 <div class="email-edit">
-                  <p>{{ peopleDetail.data.email }}</p>
+                  <p>{{ peopleDetail.email }}</p>
                   <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
-                  <button class="btn-borderless text-green hover-red">Ubah</button>
+                  <button @click="emailModal = !emailModal" class="btn-borderless text-green hover-red">Ubah</button>
+                  <ModalContainer :class="emailModal ? '' : 'hidden'" class="edit-name-modal">
+                    <div class="w-full flex-col justify-end items-end">
+                      <img @click="emailModal = !emailModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+                    </div>
+                    <div class="flex-col justify-center items-center">
+                      <h3 class="text-2xl text-bold">Ubah Email</h3>
+                    </div>
+                    <div class="mt-20">
+                      <form id="form" action="" class="flex-col">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" v-model="peopleDetail.email" class="mt-10 modal-textfield">
+                        <p class="mt-10">Email dapat dilihat oleh pengguna lainnya</p>
+                      </form>
+                    </div>
+                    <div class="mt-50 flex-row justify-center items-center">
+                      <button @click="updateEmail" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                    </div>
+                  </ModalContainer>
                 </div>
               </div>
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Nomor HP</div>
                 <div class="phone-edit">
-                  <p>{{ peopleDetail.data.phone_number }}</p>
+                  <p>{{ peopleDetail.phone_number }}</p>
                   <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
-                  <button class="btn-borderless text-green hover-red">Ubah</button>
+                  <button @click="phoneModal = !phoneModal" class="btn-borderless text-green hover-red">Ubah</button>
+                  <ModalContainer :class="phoneModal ? '' : 'hidden'" class="edit-name-modal">
+                    <div class="w-full flex-col justify-end items-end">
+                      <img @click="phoneModal = !phoneModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+                    </div>
+                    <div class="flex-col justify-center items-center">
+                      <h3 class="text-2xl text-bold">Ubah Nomor HP</h3>
+                    </div>
+                    <div class="mt-20">
+                      <form id="form" action="" class="flex-col">
+                        <label for="phone_number">Nama</label>
+                        <input type="text" name="phone_number" id="phone_number" v-model="peopleDetail.phone_number" class="mt-10 modal-textfield">
+                        <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
+                      </form>
+                    </div>
+                    <div class="mt-50 flex-row justify-center items-center">
+                      <button @click="updatePhone" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                    </div>
+                  </ModalContainer>
                 </div>
               </div>
             </div>
@@ -104,18 +159,44 @@ export default {
   name: 'EditPeopleMain',
   data () {
     return {
-      showModal: false
+      passModal: true,
+      nameModal: false,
+      emailModal: false,
+      phoneModal: false
     }
   },
   components: {
     ModalContainer
   },
-  created () {
-    this.$store.dispatch('loadPeopleDetail')
-  },
   computed: mapState([
     'peopleDetail'
-  ])
+  ]),
+  methods: {
+    updateName (e) {
+      e.preventDefault()
+      const peopleData = {
+        fullname: this.peopleDetail.fullname
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.nameModal = false
+    },
+    updateEmail (e) {
+      e.preventDefault()
+      const peopleData = {
+        email: this.peopleDetail.email
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.emailModal = false
+    },
+    updatePhone (e) {
+      e.preventDefault()
+      const peopleData = {
+        phone_number: this.peopleDetail.phone_number
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.phoneModal = false
+    }
+  }
 }
 </script>
 

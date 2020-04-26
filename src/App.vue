@@ -33,6 +33,10 @@ export default {
     Footer,
     Modal,
     Login
+  },
+  created () {
+    this.$store.dispatch('loadPeopleDetail')
+    this.$store.dispatch('categoryList')
   }
 }
 </script>

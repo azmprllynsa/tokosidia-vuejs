@@ -34,7 +34,7 @@ export default {
     }
     input {
       font-size: 12px;
-      color: #929292;
+      color: #4c4c4c;
       background-color: transparent;
       outline: none;
       border: none;

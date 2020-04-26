@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="all-products">
-        <CardProduct class="product-item" v-for="item in products.data" :key="item.id" :data="item" :storeName="true"/>
+        <CardProduct class="product-item" v-for="item in products" :key="item.id" :data="item" :storeName="true"/>
       </div>
     </div>
   </div>

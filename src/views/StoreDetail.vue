@@ -13,7 +13,7 @@
               </div>
               <div class="detail">
                 <div class="store-name">
-                  <h2>Vengoz</h2>
+                  <h2>{{ peopleDetail.store.name }}</h2>
                   <div class="gold">
                     <img src="@/assets/img/gold-4.gif">
                   </div>
@@ -27,7 +27,7 @@
                   </div>
                   <div class="location">
                     <img src="">
-                    <p>Jakarta Utara</p>
+                    <p>{{ peopleDetail.store.address }}</p>
                   </div>
                   <div class="followers">
                     <p>62.8K Followers</p>
@@ -204,8 +204,7 @@
           <h2>Semua Produk</h2>
         </div>
         <div class="products">
-          <CardProduct v-for="(card, i) in 2" :key="i" :unggulan="true" />
-          <CardProduct v-for="(card, i) in 20" :key="i + 2" />
+          <CardProduct v-for="(card, i) in productsSeller" :key="i" :data="card" />
         </div>
         <div class="pagination-limit">
           <div class="limit">
@@ -244,6 +243,20 @@ export default {
   },
   components: {
     CardProduct
+  },
+  created () {
+    this.$store.dispatch('loadProducts')
+  },
+  computed: {
+    peopleDetail () {
+      return this.$store.state.peopleDetail
+    },
+    products () {
+      return this.$store.state.products
+    },
+    productsSeller () {
+      return this.products.filter(item => item.user_id === this.peopleDetail.id.toString())
+    }
   }
 }
 </script>

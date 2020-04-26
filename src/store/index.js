@@ -18,13 +18,15 @@ export default new Vuex.Store({
       errorPassword: false,
       errorPassword2: false,
       typePassword: 'password',
-      hiddenPassword: true
+      hiddenPassword: true,
+      searchValue: ''
     },
+    placeholder: ['Cari jodoh', 'Cari es batu', 'Cari aja', 'Cari apa ya?'],
     message: null,
-    dataUser: {},
-    categoryList: [],
     peopleDetail: {},
-    products: {},
+    productDetail: {},
+    categoryList: [],
+    products: [],
     modalLogin: false
   },
   getters: {
@@ -43,6 +45,9 @@ export default new Vuex.Store({
     },
     SET_PRODUCTS (state, products) {
       state.products = products
+    },
+    SET_PRODUCT_DETAIL (state, product) {
+      state.productsSeller = product
     },
     TOGGLE_HIDDEN (state) {
       state.dataForm.hiddenPassword = !state.dataForm.hiddenPassword
@@ -87,16 +92,23 @@ export default new Vuex.Store({
           .get(`${process.env.VUE_APP_URL_API}user/${decoded.id}`)
           .then(res => {
             // console.log(res.data)
-            const peopleDetail = res.data
+            const peopleDetail = res.data.data
             commit('SET_PEOPLE_DETAIL', peopleDetail)
           })
       })
+    },
+    loadProductDetail ({ commit, state }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}product/${state.peopleDetail.seller_id}`)
+        .then(res => {
+          commit('SET_PRODUCT_DETAIL', res.data.data)
+        })
     },
     loadProducts ({ commit }) {
       axios
         .get(`${process.env.VUE_APP_URL_API}product/`)
         .then(res => {
-          const products = res.data
+          const products = res.data.data
           commit('SET_PRODUCTS', products)
         })
     },
@@ -141,6 +153,14 @@ export default new Vuex.Store({
             resolve(res)
           })
       })
+    },
+    updatePeople ({ commit, state }, peopleData) {
+      axios
+        .put(`${process.env.VUE_APP_URL_API}user/${state.peopleDetail.id}`, peopleData)
+        .then(res => {
+          console.log(peopleData)
+          console.log(res)
+        })
     }
   },
   modules: {
