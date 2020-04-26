@@ -97,17 +97,29 @@
           Special Discount
         </div>
       </div>
-      <div></div>
+      <div class="all-products">
+        <CardProduct class="product-item" v-for="item in products.data" :key="item.id" :data="item" :storeName="true"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import CardProduct from '@/components/CardProduct'
 
 export default {
   name: 'Home',
   components: {
-  }
+    CardProduct
+  },
+  created () {
+    this.$store.dispatch('loadProducts')
+  },
+  computed: mapState([
+    'products'
+  ])
 }
 </script>
 
@@ -330,6 +342,18 @@ h3 {
         padding: 10px 70px 40px 10px;
         border-radius: 10px;
         margin-right: 10px;
+      }
+    }
+    .all-products {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      .product-item {
+        margin-right: 23px;
+        margin-bottom: 20px;
       }
     }
   }

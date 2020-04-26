@@ -67,12 +67,12 @@
                 </div>
               </div>
               <div class="content-wrap">
-                <div v-for="sc in category.SubCategory" :key="sc" class="content-category">
+                <div v-for="(sc, i) in category.SubCategory" :key="i" class="content-category">
                   <div class="category-title">
                     <p>{{ sc.name }}</p>
                   </div>
                   <div class="category-list">
-                    <p v-for="ssc in sc.SubSubCategory" :key="ssc" >{{ ssc.name }}</p>
+                    <p v-for="(ssc, i) in sc.SubSubCategory" :key="i" >{{ ssc.name }}</p>
                   </div>
                 </div>
               </div>
@@ -217,6 +217,7 @@ export default {
         // background-color: darkgray;
         width: 100%;
         height: 25px;
+        cursor: pointer;
         p{
           color: rgb(13, 163, 28);
         }
@@ -247,6 +248,7 @@ export default {
         // height: 100%;
         padding-left: 40px;
         padding-top: 60px;
+        cursor: pointer;
         .name{
           // background-color: teal;
           width: 170px;
@@ -287,6 +289,7 @@ export default {
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
+      cursor: pointer;
       // padding: 30px;
       .category-title{
         // background-color: cornflowerblue;
