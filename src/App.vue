@@ -35,7 +35,7 @@ export default {
     Login
   },
   created () {
-    // this.$store.dispatch('loadPeopleDetail')
+    this.$store.dispatch('loadPeopleDetail')
     this.$store.dispatch('categoryList')
   }
 }

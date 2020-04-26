@@ -22,10 +22,10 @@ export default new Vuex.Store({
     },
     placeholder: ['Cari jodoh', 'Cari es batu', 'Cari dukun santet', 'Cari apa ya?'],
     message: null,
-    dataUser: {},
-    categoryList: [],
     peopleDetail: {},
-    products: {},
+    productDetail: {},
+    categoryList: [],
+    products: [],
     modalLogin: false
   },
   getters: {
@@ -44,6 +44,9 @@ export default new Vuex.Store({
     },
     SET_PRODUCTS (state, products) {
       state.products = products
+    },
+    SET_PRODUCT_DETAIL (state, product) {
+      state.productsSeller = product
     },
     TOGGLE_HIDDEN (state) {
       state.dataForm.hiddenPassword = !state.dataForm.hiddenPassword
@@ -93,11 +96,18 @@ export default new Vuex.Store({
           })
       })
     },
+    loadProductDetail ({ commit, state }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}product/${state.peopleDetail.seller_id}`)
+        .then(res => {
+          commit('SET_PRODUCT_DETAIL', res.data.data)
+        })
+    },
     loadProducts ({ commit }) {
       axios
         .get(`${process.env.VUE_APP_URL_API}product/`)
         .then(res => {
-          const products = res.data
+          const products = res.data.data
           commit('SET_PRODUCTS', products)
         })
     },

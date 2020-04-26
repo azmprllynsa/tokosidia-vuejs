@@ -261,7 +261,7 @@ export default {
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   transition: .2s;
 }
 .fade {
@@ -347,8 +347,7 @@ export default {
           }
         }
         .sub-category__body {
-          max-height: 1000px;
-          height: 1000px;
+          min-height: 500px;
           column-count: 5;
           column-fill: auto;
           overflow: hidden;

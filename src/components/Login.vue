@@ -63,7 +63,7 @@ export default {
             return
           }
           this.$store.state.dataForm.errorPassword = false
-          this.$router.go('/')
+          this.$router.go()
         })
     }
   }
