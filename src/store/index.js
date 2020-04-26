@@ -152,6 +152,14 @@ export default new Vuex.Store({
             resolve(res)
           })
       })
+    },
+    updatePeople ({ commit, state }, peopleData) {
+      axios
+        .put(`${process.env.VUE_APP_URL_API}user/${state.peopleDetail.id}`, peopleData)
+        .then(res => {
+          console.log(peopleData)
+          console.log(res)
+        })
     }
   },
   modules: {
