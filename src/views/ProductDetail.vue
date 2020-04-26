@@ -57,9 +57,9 @@
           <h2 class="product-name">{{ productDetail.name }}</h2>
           <div class="product-score">
             <div class="score">
-              <p>{{ productDetail.rating + '.0' }}</p>
+              <p>{{ Math.ceil(parseInt(productDetail.rating) / 2) + '.0' }}</p>
               <div class="stars">
-                <img v-for="star in parseInt(productDetail.rating)" :key="star" src="@/assets/img/star.png" alt="">
+                <img v-for="star in Math.ceil(parseInt(productDetail.rating) / 2)" :key="star" src="@/assets/img/star.png" alt="">
               </div>
               <p>(184)</p>
             </div>
@@ -95,7 +95,7 @@
               <p>Rp. 889.000</p>
             </div>
             <div class="price">
-              <p>Rp. {{ productDetail.price }}</p>
+              <p>Rp. {{ productDetail.price || 0 }}</p>
             </div>
             <div class="price-guarantee">
               <img src="@/assets/img/rp-icon.svg">
@@ -201,7 +201,7 @@
         <div class="checkout-info">
           <div class="total">
             <p>Total</p>
-            <h2>Rp. {{ totalPrice }}</h2>
+            <h2>Rp. {{ totalPrice || 0 }}</h2>
           </div>
           <button @click="wishlist" class="love-flat"><img src="@/assets/img/love-flat.svg"></button>
           <button @click="shipment" class="putih-oren">Beli</button>
