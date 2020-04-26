@@ -4,7 +4,7 @@
       <div class="top">
         <img id="small-pict" src="https://ecs7.tokopedia.net/img/cache/100-square/default_picture_user/default_toped-20.jpg" alt="">
         <div class="side-profile">
-          <p id="side-name" class="hover-red text-green text-md text-bold">Firman</p>
+          <p id="side-name" class="hover-red text-green text-md text-bold">{{ peopleDetail.fullname }}</p>
           <p class="text-gray text-sm">
             <img id="egg" src="https://ecs7.tokopedia.net/assets/images/promo/tokopoints/egg-icon/v2-egg-silver.png" alt="Points">
             12.143 Points
@@ -78,6 +78,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'EditPeopleAside',
   data () {
@@ -86,7 +88,10 @@ export default {
       purchaseOpen: true,
       myProfileOpen: true
     }
-  }
+  },
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 
