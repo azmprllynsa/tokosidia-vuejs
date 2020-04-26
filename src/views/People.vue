@@ -4,12 +4,12 @@
       <div class="profile-card">
         <div class="header">
           <img src="https://ecs7.tokopedia.net/img/cache/100-square/default_picture_user/default_toped-20.jpg" alt="Profile Picture">
-          <h3 id="name">{{ peopleDetail.fullname }}</h3>
+          <h3 id="name">{{ usersDetail.fullname }}</h3>
           <p id="username">@username</p>
           <p id="following">71 Following</p>
         </div>
         <div class="footer">
-          <router-link :to="'/people/' + $route.params.id + '/edit'">
+          <router-link :to="'/people/' + peopleDetail.id + '/edit'">
             <button>Edit Profil</button>
           </router-link>
         </div>
@@ -23,9 +23,15 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'People',
-  computed: mapState([
-    'peopleDetail'
-  ])
+  computed: {
+    ...mapState([
+      'usersDetail',
+      'peopleDetail'
+    ])
+  },
+  created () {
+    this.$store.dispatch('loadUsersDetail', this.$route.params.idPeople)
+  }
 }
 </script>
 

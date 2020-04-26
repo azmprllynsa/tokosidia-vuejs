@@ -31,6 +31,14 @@ const routes = [
     }
   },
   {
+    path: '/pagenotfound',
+    name: 'Page Not Found',
+    component: PageNotFound,
+    meta: {
+      title: 'Halaman Tidak Ditemukan | Tokosidia'
+    }
+  },
+  {
     path: '/confirm',
     name: 'Confirmation',
     component: Confirm,
@@ -112,7 +120,8 @@ const routes = [
     name: 'OrderList',
     component: OrderList,
     meta: {
-      title: 'Daftar Transaksi | Tokosidia'
+      title: 'Daftar Transaksi | Tokosidia',
+      requiresAuth: true
     }
   },
   {
@@ -137,7 +146,8 @@ const routes = [
     name: ' Add Product',
     component: AddProduct,
     meta: {
-      title: 'Add Product | Tokosidia'
+      title: 'Add Product | Tokosidia',
+      requiresAuth: true
     }
   },
   {
