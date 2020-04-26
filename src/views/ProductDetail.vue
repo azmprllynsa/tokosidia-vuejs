@@ -27,13 +27,13 @@
       <div class="product-img">
         <div class="product-img-wrapper">
           <div class="img-primary">
-            <img src="@/assets/img/contoh-img-product.jpg">
+            <img :src="productDetail.images[0] || require('@/assets/img/contoh-img-product.jpg')">
           </div>
           <div class="img-part">
-            <div class="img img-1">
-              <img src="@/assets/img/contoh-img-product.jpg">
+            <div v-for="(img, i) in productDetail.images" :key="i" class="img img-1">
+              <img :src="img || require('@/assets/img/contoh-img-product.jpg')">
             </div>
-            <div class="img img-2">
+            <!-- <div class="img img-2">
               <img src="@/assets/img/contoh-img-product.jpg">
             </div>
             <div class="img img-3">
@@ -44,7 +44,7 @@
             </div>
             <div class="img img-5">
               <img src="@/assets/img/contoh-img-product.jpg">
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -183,10 +183,10 @@
           <div class="group-store-name">
             <img src="@/assets/img/seller_no_logo_1.png">
             <div class="store-name">
-              <div class="group-name">
+              <router-link class="group-name" :to="'/' + sellerDetail.id">
                 <h1>{{ sellerDetail.name }}</h1>
                 <img src="@/assets/img/gold-4.gif">
-              </div>
+              </router-link>
               <div class="store-info">
                 <span>{{ sellerDetail.address }}</span>
                 <span class="dot-small">&#8226;</span>

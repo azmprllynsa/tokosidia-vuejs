@@ -1,6 +1,6 @@
 <template>
   <div class="card-product">
-    <router-link :to="`/${data.seller_id}/${data.id}`">
+    <router-link :to="`/${idSeller || data.seller_id}/${data.id}`">
       <div class="whitelist">
         <div class="love">
           <img src="">
@@ -49,7 +49,7 @@
 <script>
 export default {
   name: 'card-product',
-  props: ['data', 'unggulan', 'storeName']
+  props: ['data', 'idSeller', 'unggulan', 'storeName']
 }
 </script>
 
