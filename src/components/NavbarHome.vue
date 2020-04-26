@@ -28,7 +28,7 @@
                :class="{ onhover: hoverCategory }"
           >Kategori</div>
         </div>
-        <SearchBox />
+        <SearchBox placeholder="Cari jodoh" />
         <div v-if="$store.getters.isLogin" class="user-info login">
           <div class="icon">
             <div>

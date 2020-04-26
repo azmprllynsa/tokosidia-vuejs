@@ -1,7 +1,7 @@
 <template>
   <div :style="{ width: customWidth || '100%' }" class="search">
-    <form @submit.prevent>
-      <input type="text" placeholder="Cari es batu">
+    <form @submit.prevent="$emit('getValue', searchValue)">
+      <input type="text" v-model="searchValue" :placeholder="placeholder || 'Cari es batu'">
       <button><img src="@/assets/img/search.png" class="icon-search"></button>
     </form>
   </div>
@@ -10,7 +10,12 @@
 <script>
 export default {
   name: 'search-box',
-  props: ['customWidth']
+  props: ['customWidth', 'placeholder'],
+  data () {
+    return {
+      searchValue: ''
+    }
+  }
 }
 </script>
 
