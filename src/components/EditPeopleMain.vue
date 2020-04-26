@@ -28,7 +28,26 @@
                 <p class="text-md text-gray">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</p>
               </div>
             </div>
-            <button class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
+            <button @click="passModal = !passModal" class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
+            <ModalContainer :class="passModal ? '' : 'hidden'" class="edit-name-modal">
+              <div class="w-full flex-col justify-end items-end">
+                <img @click="passModal = !passModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
+              </div>
+              <div class="flex-col justify-center items-center">
+                <h3 class="text-2xl text-bold">Ubah Nama</h3>
+                <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
+              </div>
+              <div class="mt-20">
+                <form id="form" action="" class="flex-col">
+                  <label for="fullname">Nama</label>
+                  <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
+                  <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
+                </form>
+              </div>
+              <div class="mt-50 flex-row justify-center items-center">
+                <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+              </div>
+            </ModalContainer>
             <button class="text-white btn-green"><i class="fas fa-lock"></i> PIN Tokopedia</button>
           </div>
           <div class="biodata-section">
@@ -55,7 +74,7 @@
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -86,13 +105,13 @@
                     </div>
                     <div class="mt-20">
                       <form id="form" action="" class="flex-col">
-                        <label for="fullname">Email</label>
-                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.email" class="mt-10 modal-textfield">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" v-model="peopleDetail.email" class="mt-10 modal-textfield">
                         <p class="mt-10">Email dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updateEmail" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -109,17 +128,16 @@
                     </div>
                     <div class="flex-col justify-center items-center">
                       <h3 class="text-2xl text-bold">Ubah Nomor HP</h3>
-                      <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
                     </div>
                     <div class="mt-20">
                       <form id="form" action="" class="flex-col">
-                        <label for="fullname">Nama</label>
-                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.phone_number" class="mt-10 modal-textfield">
+                        <label for="phone_number">Nama</label>
+                        <input type="text" name="phone_number" id="phone_number" v-model="peopleDetail.phone_number" class="mt-10 modal-textfield">
                         <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updatePhone" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -141,6 +159,7 @@ export default {
   name: 'EditPeopleMain',
   data () {
     return {
+      passModal: true,
       nameModal: false,
       emailModal: false,
       phoneModal: false
@@ -151,7 +170,33 @@ export default {
   },
   computed: mapState([
     'peopleDetail'
-  ])
+  ]),
+  methods: {
+    updateName (e) {
+      e.preventDefault()
+      const peopleData = {
+        fullname: this.peopleDetail.fullname
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.nameModal = false
+    },
+    updateEmail (e) {
+      e.preventDefault()
+      const peopleData = {
+        email: this.peopleDetail.email
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.emailModal = false
+    },
+    updatePhone (e) {
+      e.preventDefault()
+      const peopleData = {
+        phone_number: this.peopleDetail.phone_number
+      }
+      this.$store.dispatch('updatePeople', peopleData)
+      this.phoneModal = false
+    }
+  }
 }
 </script>
 
