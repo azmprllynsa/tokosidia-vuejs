@@ -98,7 +98,7 @@ export default new Vuex.Store({
         .then(res => {
           const products = res.data
           commit('SET_PRODUCTS', products)
-      })
+        })
     },
     categoryList ({ commit }) {
       axios
