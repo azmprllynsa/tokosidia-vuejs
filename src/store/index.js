@@ -24,6 +24,7 @@ export default new Vuex.Store({
     placeholder: ['Cari jodoh', 'Cari es batu', 'Cari aja', 'Cari apa ya?'],
     message: null,
     peopleDetail: {},
+    usersDetail: {},
     productDetail: {},
     sellerDetail: {},
     categoryList: [],
@@ -51,6 +52,9 @@ export default new Vuex.Store({
     },
     SET_PEOPLE_DETAIL (state, peopleDetail) {
       state.peopleDetail = peopleDetail
+    },
+    SET_USERS_DETAIL (state, usersDetail) {
+      state.usersDetail = usersDetail
     },
     SET_SELLER_DETAIL (state, sellerDetail) {
       state.sellerDetail = sellerDetail
@@ -115,11 +119,17 @@ export default new Vuex.Store({
         axios
           .get(`${process.env.VUE_APP_URL_API}user/${decoded.id}`)
           .then(res => {
-            // console.log(res.data)
             const peopleDetail = res.data.data
             commit('SET_PEOPLE_DETAIL', peopleDetail)
           })
       })
+    },
+    loadUsersDetail ({ commit }, idUser) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}user/${idUser}`)
+        .then(res => {
+          commit('SET_USERS_DETAIL', res.data.data)
+        })
     },
     loadProductDetail ({ commit, state }) {
       axios

@@ -102,11 +102,11 @@
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <router-link to="/">Vengoz</router-link>
+          <router-link :to="'/' + sellerDetail.id">{{ sellerDetail.name }}</router-link>
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <p>Produk</p>
+          <p>Ulasan</p>
         </li>
       </ul>
     </div>
