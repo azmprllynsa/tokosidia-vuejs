@@ -21,7 +21,7 @@
                 <div class="discount-price">Rp. 889.000</div>
               </div>
               <div class="product-price">
-                <span>Rp. {{ data.price || "0"}}</span>
+                <span>Rp. {{ data.price || 0 }}</span>
               </div>
             </div>
             <div v-if="storeName" class="store-info">
@@ -29,7 +29,7 @@
               <div class="store-name-location">
                 <div class="text-info-wrapper">
                   <p>{{ data.users.fullname }}</p>
-                  <p>Lokasi Toko</p>
+                  <p>{{ data.users.addresses[0].address }}</p>
                 </div>
               </div>
             </div>
