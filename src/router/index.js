@@ -68,9 +68,9 @@ const routes = [
     name: 'Cart',
     component: Cart,
     meta: {
-      title: 'Keranjang | Tokosidia'
+      title: 'Keranjang | Tokosidia',
+      requiresAuth: true
     }
-
   },
   {
     path: '/cart/shipment',
@@ -162,6 +162,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters.isLogin) next({ name: 'Login' })
+  else next()
   if (to.matched.some(record => record.meta.requiresVisitor) && store.getters.isLogin) next({ name: 'Home' })
   else next()
 })

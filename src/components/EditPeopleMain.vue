@@ -3,7 +3,7 @@
     <!-- <div v-for="data in peopleDetail" :key="data.id"> -->
       <div class="main-header">
         <img src="https://ecs7.tokopedia.net/img/user/setting/icon-people.svg" alt="User Icon">
-        <p class="text-bold">{{ peopleDetail.data.fullname }}</p>
+        <p class="text-bold">{{ peopleDetail.fullname }}</p>
       </div>
       <div class="main-content">
         <nav>
@@ -37,7 +37,7 @@
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Nama</div>
                 <div class="name-edit">
-                  <p>{{ peopleDetail.data.fullname }}</p>
+                  <p>{{ peopleDetail.fullname }}</p>
                   <button @click="showModal = !showModal" class="btn-borderless text-green hover-red">Ubah</button>
                   <ModalContainer :class="showModal ? '' : 'hidden'" class="edit-name-modal">
                     <div class="w-full flex-col justify-end items-end">
@@ -50,7 +50,7 @@
                     <div class="mt-20">
                       <form id="form" action="" class="flex-col">
                         <label for="fullname">Nama</label>
-                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.data.fullname" class="mt-10 modal-textfield">
+                        <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
                         <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
@@ -74,7 +74,7 @@
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Email</div>
                 <div class="email-edit">
-                  <p>{{ peopleDetail.data.email }}</p>
+                  <p>{{ peopleDetail.email }}</p>
                   <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
                   <button class="btn-borderless text-green hover-red">Ubah</button>
                 </div>
@@ -82,7 +82,7 @@
               <div class="biodata-section-flex text-gray text-lg">
                 <div class="biodata-section-title">Nomor HP</div>
                 <div class="phone-edit">
-                  <p>{{ peopleDetail.data.phone_number }}</p>
+                  <p>{{ peopleDetail.phone_number }}</p>
                   <p class="verified text-green"><i class="fas fa-check fa-xs"></i> Terverifikasi</p>
                   <button class="btn-borderless text-green hover-red">Ubah</button>
                 </div>
@@ -109,9 +109,6 @@ export default {
   },
   components: {
     ModalContainer
-  },
-  created () {
-    this.$store.dispatch('loadPeopleDetail')
   },
   computed: mapState([
     'peopleDetail'
