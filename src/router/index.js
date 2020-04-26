@@ -17,6 +17,7 @@ import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
 import Subcategory from '@/views/Subcategory.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
+import AddProduct from '@/views/AddProduct.vue'
 
 Vue.use(VueRouter)
 
@@ -127,6 +128,14 @@ const routes = [
     component: PeopleEdit,
     meta: {
       title: 'Ubah Profil | Tokosidia'
+    }
+  },
+  {
+    path: '/people/:idPeople/add-product',
+    name: ' Add Product',
+    component: AddProduct,
+    meta: {
+      title: 'Add Product | Tokosidia'
     }
   },
   {
