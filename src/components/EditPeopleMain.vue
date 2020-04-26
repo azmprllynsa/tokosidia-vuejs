@@ -29,23 +29,27 @@
               </div>
             </div>
             <button @click="passModal = !passModal" class="text-gray"><i class="fas fa-key"></i> Ubah Kata Sandi</button>
-            <ModalContainer :class="passModal ? '' : 'hidden'" class="edit-name-modal">
+            <ModalContainer :class="passModal ? '' : 'hidden'" class="edit-pass-modal">
               <div class="w-full flex-col justify-end items-end">
                 <img @click="passModal = !passModal" src="https://ecs7.tokopedia.net/img/profile-address/icon-close.png" width="30px" alt="">
               </div>
               <div class="flex-col justify-center items-center">
-                <h3 class="text-2xl text-bold">Ubah Nama</h3>
-                <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
+                <h3 class="text-2xl text-bold">Ubah Kata Sandi</h3>
               </div>
               <div class="mt-20">
-                <form id="form" action="" class="flex-col">
-                  <label for="fullname">Nama</label>
-                  <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
-                  <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
+                <form id="formpass" action="" class="flex-col">
+                  <label for="password">Masukkan Kata Sandi Baru</label>
+                  <input type="password" name="password" id="password" v-model="password" :class="!$v.password.$error ? '' : 'border-red'" class="mt-10 modal-textfield">
+                  <p class="mt-5 text-red" v-if="!$v.password.required">Kata Sandi harus diisi</p>
+                  <p class="mt-5 text-red" v-if="!$v.password.minLength">Minimum {{ $v.password.$params.minLength.min }} karakter</p>
+                  <label for="repeatPassword" class="mt-20">Ulangi Kata Sandi Baru</label>
+                  <input type="password" name="repeatPassword" id="repeatPassword" v-model="repeatPassword" class="mt-10 modal-textfield">
+                  <p class="mt-5 text-red" v-if="!$v.repeatPassword.sameAsPassword">Password harus sama</p>
                 </form>
               </div>
-              <div class="mt-50 flex-row justify-center items-center">
-                <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+              <div class="btn-pass mt-20 flex-row justify-center items-center">
+                <button @click="passModal = !passModal" class="pass-cancel text-lg text-bold">Batal</button>
+                <button @click="updatePass" class="pass-submit text-lg text-bold" type="submit" form="formpass">Ubah</button>
               </div>
             </ModalContainer>
             <button class="text-white btn-green"><i class="fas fa-lock"></i> PIN Tokopedia</button>
@@ -67,14 +71,14 @@
                       <p class="mt-20 text-lg">Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.</p>
                     </div>
                     <div class="mt-20">
-                      <form id="form" action="" class="flex-col">
+                      <form id="formname" action="" class="flex-col">
                         <label for="fullname">Nama</label>
                         <input type="text" name="fullname" id="fullname" v-model="peopleDetail.fullname" class="mt-10 modal-textfield">
                         <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updateName" class="btn-submit text-lg text-bold" type="submit" form="formname">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -104,14 +108,14 @@
                       <h3 class="text-2xl text-bold">Ubah Email</h3>
                     </div>
                     <div class="mt-20">
-                      <form id="form" action="" class="flex-col">
+                      <form id="formmail" action="" class="flex-col">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" v-model="peopleDetail.email" class="mt-10 modal-textfield">
                         <p class="mt-10">Email dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button @click="updateEmail" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updateEmail" class="btn-submit text-lg text-bold" type="submit" form="formmail">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -130,14 +134,14 @@
                       <h3 class="text-2xl text-bold">Ubah Nomor HP</h3>
                     </div>
                     <div class="mt-20">
-                      <form id="form" action="" class="flex-col">
+                      <form id="formphone" action="" class="flex-col">
                         <label for="phone_number">Nama</label>
                         <input type="text" name="phone_number" id="phone_number" v-model="peopleDetail.phone_number" class="mt-10 modal-textfield">
                         <p class="mt-10">Nama dapat dilihat oleh pengguna lainnya</p>
                       </form>
                     </div>
                     <div class="mt-50 flex-row justify-center items-center">
-                      <button @click="updatePhone" class="btn-submit text-lg text-bold" type="submit" form="form">Simpan</button>
+                      <button @click="updatePhone" class="btn-submit text-lg text-bold" type="submit" form="formphone">Simpan</button>
                     </div>
                   </ModalContainer>
                 </div>
@@ -152,6 +156,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { required, sameAs, minLength } from 'vuelidate/lib/validators'
 
 import ModalContainer from '@/components/ModalContainer'
 
@@ -162,11 +167,18 @@ export default {
       passModal: true,
       nameModal: false,
       emailModal: false,
-      phoneModal: false
+      phoneModal: false,
+      password: '',
+      repeatPassword: '',
+      submitted: false
     }
   },
   components: {
     ModalContainer
+  },
+  validations: {
+    password: { required, minLength: minLength(6) },
+    repeatPassword: { sameAsPassword: sameAs('password') }
   },
   computed: mapState([
     'peopleDetail'
@@ -195,6 +207,22 @@ export default {
       }
       this.$store.dispatch('updatePeople', peopleData)
       this.phoneModal = false
+    },
+    updatePass (e) {
+      e.preventDefault()
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        // eslint-disable-next-line no-useless-return
+        return
+      } else {
+        const passData = {
+          password: this.password
+        }
+        this.$store.dispatch('updatePass', passData)
+        this.passModal = false
+        this.password = ''
+        this.repeatPassword = ''
+      }
     }
   }
 }
@@ -203,6 +231,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/fblazt.scss';
 
+.border-red {
+  border-color: red !important;
+  outline: none;
+}
+.text-red {
+  color: red;
+}
 .btn-submit {
   padding: 10px 50px;
   background-color: #4FA149;
@@ -351,6 +386,27 @@ main {
           margin-top: 5px;
           background-color: #FFFFFF;
           border: 1px solid #E0E0E0;
+        }
+        .edit-pass-modal {
+          .btn-pass {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            padding: 0 20%;
+            button.pass-cancel {
+              padding: 13px 0;
+              margin-right: 5px;
+              border-radius: 5px;
+            }
+            button.pass-submit {
+              margin-left: 5px;
+              border-radius: 5px;
+              padding: 13px 0;
+              background-color: #56B54A;
+              color: white;
+            }
+          }
         }
         button.btn-green {
           background-color: #56B54A;
