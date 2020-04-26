@@ -1,8 +1,5 @@
 <template>
   <div class="wrapper flex-col">
-    <ModalContainer :widtModal="widthModal">
-      tes
-    </ModalContainer>
     <div>
       <h2 class="text-xl text-bold">Checkout</h2>
     </div>
@@ -26,10 +23,29 @@
               <span class="checkmark"></span>
             </label>
           </div>
-          <ShoppingSummaryBtn :btnText="btnText"/>
+          <ShoppingSummaryBtn @click="paymentModal = !paymentModal" :btnText="btnText"/>
         </ShoppingSummary>
       </div>
     </div>
+    <ModalContainer :class="paymentModal ? '' : 'hidden'" class="payment-modal">
+      <div class="header">
+        <i @click="paymentModal = !paymentModal" class="fas fa-times"></i>
+        <h3>Pilih Metode Pembayaran</h3>
+      </div>
+      <div class="main">
+        <p class="title">Pembayaran di Tokopedia</p>
+        <div class="payment-choose">
+          <div class="bank-item">
+            <div class="bank-itself">
+              <img src="https://ecs7.tokopedia.net/img/toppay/sprites/bca.png" width="40px" alt="">
+              <p>BCA</p>
+            </div>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </ModalContainer>
   </div>
 </template>
 
@@ -45,7 +61,7 @@ export default {
   data () {
     return {
       btnText: 'Pilih Pembayaran',
-      widthModal: '448px'
+      paymentModal: false
     }
   },
   components: {
@@ -61,7 +77,32 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/fblazt.scss';
 
+.hidden {
+  display: none;
+}
 .wrapper {
   padding: 50px 0;
+  .payment-modal {
+    display: flex;
+    flex-direction: column;
+    .header {
+      display: flex;
+      flex-direction: row;
+    }
+    .main {
+      display: flex;
+      flex-direction: column;
+      .payment-choose {
+        .bank-item {
+          display: flex;
+          flex-direction: row;
+          .bank-itself {
+            display: flex;
+            flex-direction: row;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

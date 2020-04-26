@@ -4,7 +4,7 @@
       <div class="top">
         <img id="small-pict" src="https://ecs7.tokopedia.net/img/cache/100-square/default_picture_user/default_toped-20.jpg" alt="">
         <div class="side-profile">
-          <p id="side-name" class="hover-green text-md text-bold">Firman</p>
+          <p id="side-name" class="hover-green text-md text-bold">{{ peopleDetail.fullname }}</p>
           <p class="text-gray text-sm">
             Verified Account
           </p>
@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'OrderDetailAside',
   data () {
@@ -85,7 +87,10 @@ export default {
       purchaseOpen: true,
       myProfileOpen: true
     }
-  }
+  },
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 
