@@ -113,6 +113,9 @@ main {
         li {
           margin: 20px;
         }
+        li:nth-child(1) {
+          color: #03AC0e;
+        }
       }
     }
   }
