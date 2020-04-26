@@ -264,7 +264,17 @@ export default {
     },
     shipment () {
       if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
-      else this.$router.push('/cart/shipment')
+      else {
+        const dataShipment = {
+          amount: this.amount,
+          totalPrice: parseInt(this.productDetail.price) * this.amount,
+          totalWeight: parseInt(this.productDetail.weight.match(/[0-9]/g).join('')) * this.amount,
+          product: this.productDetail,
+          store: this.sellerDetail
+        }
+        this.$store.commit('MOVE_TO_SHIPMENT', dataShipment)
+        this.$router.push('/cart/shipment')
+      }
     },
     wishlist () {
       if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true

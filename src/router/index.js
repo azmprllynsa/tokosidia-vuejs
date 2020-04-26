@@ -77,7 +77,8 @@ const routes = [
     name: 'Shipment',
     component: Shipment,
     meta: {
-      title: 'Checkout | Tokosidia'
+      title: 'Checkout | Tokosidia',
+      requiresAuth: true
     }
 
   },
@@ -126,7 +127,8 @@ const routes = [
     name: 'PeopleEdit',
     component: PeopleEdit,
     meta: {
-      title: 'Ubah Profil | Tokosidia'
+      title: 'Ubah Profil | Tokosidia',
+      requiresAuth: true
     }
   },
   {
