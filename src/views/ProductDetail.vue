@@ -19,7 +19,7 @@
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <p>Nama Produk</p>
+          <p>{{ productDetail.name }}</p>
         </li>
       </ul>
     </div>
@@ -54,12 +54,12 @@
             <img src="@/assets/img/label-store-icon.svg">
             <p class="label-name">Official Store</p>
           </div>
-          <h2 class="product-name">Jeans ENERGIE Slim Fit Original 100% SALE</h2>
+          <h2 class="product-name">{{ productDetail.name }}</h2>
           <div class="product-score">
             <div class="score">
-              <p>4.8</p>
+              <p>{{ productDetail.rating + '.0' }}</p>
               <div class="stars">
-                <img v-for="star in 5" :key="star" src="@/assets/img/star.png" alt="">
+                <img v-for="star in parseInt(productDetail.rating)" :key="star" src="@/assets/img/star.png" alt="">
               </div>
               <p>(184)</p>
             </div>
@@ -95,7 +95,7 @@
               <p>Rp. 889.000</p>
             </div>
             <div class="price">
-              <p>Rp. 213.360</p>
+              <p>Rp. {{ productDetail.price }}</p>
             </div>
             <div class="price-guarantee">
               <img src="@/assets/img/rp-icon.svg">
@@ -131,11 +131,11 @@
           <div class="right-description">
             <div class="weight">
               <p>Berat</p>
-              <span>650gr</span>
+              <span>{{ productDetail.weight }}</span>
             </div>
             <div>
               <p>Kondisi</p>
-              <span>Baru</span>
+              <span>{{ productDetail.condition }}</span>
             </div>
             <div>
               <p>Asuransi</p>
@@ -175,8 +175,7 @@
       </div>
     </div>
     <div id="description">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam officiis numquam optio rerum maxime, dicta soluta repudiandae facere ipsa tempora! Eius, aliquid perferendis sunt nostrum tenetur veritatis! Corporis impedit cum distinctio natus? Magnam eum fuga autem suscipit fugit debitis officia quis sapiente vero expedita totam delectus, eveniet in eius neque ea cupiditate voluptas maxime molestiae esse quaerat architecto ab modi facere. Corrupti aperiam consectetur iusto quam doloremque a officiis! Molestias optio explicabo facilis nam amet enim placeat magni unde. Quo, perferendis dolor numquam sint fugit quisquam excepturi quasi ab pariatur soluta dolore ad debitis modi eum nobis inventore atque?<br></p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam officiis numquam optio rerum maxime, dicta soluta repudiandae facere ipsa tempora! Eius, aliquid perferendis sunt nostrum tenetur veritatis! Corporis impedit cum distinctio natus? <br></p>
+      <p>{{ productDetail.description }}</p>
     </div>
     <div class="navbar-bottom">
       <div class="navbar-bottom-wrapper">
@@ -185,11 +184,11 @@
             <img src="@/assets/img/seller_no_logo_1.png">
             <div class="store-name">
               <div class="group-name">
-                <h1>Vengoz</h1>
+                <h1>{{ sellerDetail.name }}</h1>
                 <img src="@/assets/img/gold-4.gif">
               </div>
               <div class="store-info">
-                <span>Jakarta Utara</span>
+                <span>{{ sellerDetail.address }}</span>
                 <span class="dot-small">&#8226;</span>
                 <span>Aktfi 7 jam yang lalu</span>
                 <span class="dot-small">&#8226;</span>
@@ -197,16 +196,16 @@
               </div>
             </div>
           </div>
-          <button>Ikuti</button>
+          <button @click="follow" >Ikuti</button>
         </div>
         <div class="checkout-info">
           <div class="total">
             <p>Total</p>
-            <h2>Rp. 199000</h2>
+            <h2>Rp. {{ totalPrice }}</h2>
           </div>
-          <button class="love-flat"><img src="@/assets/img/love-flat.svg"></button>
-          <button @click="cart" class="putih-oren">Beli</button>
-          <button class="oren-putih">Tambah Ke Keranjang</button>
+          <button @click="wishlist" class="love-flat"><img src="@/assets/img/love-flat.svg"></button>
+          <button @click="shipment" class="putih-oren">Beli</button>
+          <button @click="cart" class="oren-putih">Tambah Ke Keranjang</button>
         </div>
       </div>
     </div>
@@ -214,6 +213,7 @@
 </template>
 
 <script>
+import Axios from 'axios'
 
 export default {
   name: 'product-detail',
@@ -222,29 +222,69 @@ export default {
       dropVoucher: false,
       amount: 1,
       buttonEnabled: false,
-      etalaseDrop: false
+      etalaseDrop: false,
+      productDetail: {},
+      sellerDetail: {}
+    }
+  },
+  computed: {
+    totalPrice () {
+      return parseInt(this.productDetail.price) * this.amount
     }
   },
   components: {
   },
   methods: {
     decrement () {
-      if (this.amount <= 0) return
+      if (this.amount <= 1) {
+        this.amount = 1
+        return
+      }
       this.amount--
       this.toggleCounter()
     },
     increment () {
+      if (this.amount >= this.productDetail.stock_product) {
+        this.amount = this.productDetail.stock_product
+        return
+      }
       this.amount++
       this.toggleCounter()
     },
     toggleCounter () {
-      if (this.amount <= 0) this.buttonEnabled = false
+      if (this.amount <= 1) this.buttonEnabled = false
       else this.buttonEnabled = true
+    },
+    follow () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
     },
     cart () {
       if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
       else this.$router.push('/cart')
+    },
+    shipment () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+      else this.$router.push('/cart/shipment')
+    },
+    wishlist () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+    },
+    getProductDetail () {
+      Axios.get(`${process.env.VUE_APP_URL_API}product/${this.$route.params.idProduct}`)
+        .then(res => {
+          this.productDetail = res.data.data
+        })
+    },
+    getSellerDetail () {
+      Axios.get(`${process.env.VUE_APP_URL_API}seller/${this.$route.params.idStore}`)
+        .then(res => {
+          this.sellerDetail = res.data.data
+        })
     }
+  },
+  created () {
+    this.getProductDetail()
+    this.getSellerDetail()
   }
 }
 </script>

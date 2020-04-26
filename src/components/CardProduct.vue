@@ -1,6 +1,6 @@
 <template>
   <div class="card-product">
-    <router-link :to="`/${$route.params.storename}/namaproduk`">
+    <router-link :to="`/${data.seller_id}/${data.id}`">
       <div class="whitelist">
         <div class="love">
           <img src="">
@@ -28,8 +28,8 @@
               <img class="label-store" src="@/assets/img/label-store-icon.svg">
               <div class="store-name-location">
                 <div class="text-info-wrapper">
-                  <p>{{ data.users.fullname || '' }}</p>
-                  <p>{{ data.users.addresses[0].address || 'Indonesia' }}</p>
+                  <p>Nama Seller</p>
+                  <p>Indonesia</p>
                 </div>
               </div>
             </div>

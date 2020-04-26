@@ -18,9 +18,10 @@ export default new Vuex.Store({
       errorPassword: false,
       errorPassword2: false,
       typePassword: 'password',
-      hiddenPassword: true
+      hiddenPassword: true,
+      searchValue: ''
     },
-    placeholder: ['Cari jodoh', 'Cari es batu', 'Cari dukun santet', 'Cari apa ya?'],
+    placeholder: ['Cari jodoh', 'Cari es batu', 'Cari aja', 'Cari apa ya?'],
     message: null,
     peopleDetail: {},
     productDetail: {},

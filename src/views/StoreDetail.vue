@@ -13,7 +13,7 @@
               </div>
               <div class="detail">
                 <div class="store-name">
-                  <h2>Vengoz</h2>
+                  <h2>{{ peopleDetail.store.name }}</h2>
                   <div class="gold">
                     <img src="@/assets/img/gold-4.gif">
                   </div>
@@ -27,7 +27,7 @@
                   </div>
                   <div class="location">
                     <img src="">
-                    <p>Jakarta Utara</p>
+                    <p>{{ peopleDetail.store.address }}</p>
                   </div>
                   <div class="followers">
                     <p>62.8K Followers</p>
