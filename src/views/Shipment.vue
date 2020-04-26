@@ -34,11 +34,11 @@
       </div>
       <div class="main">
         <p class="title">Pembayaran di Tokopedia</p>
-        <div class="payment-choose">
+        <div v-for="item in bank" :key="item.id" class="payment-choose">
           <div class="bank-item">
             <div class="bank-itself">
               <img src="https://ecs7.tokopedia.net/img/toppay/sprites/bca.png" width="40px" alt="">
-              <p>BCA</p>
+              <p>{{ item.bank_name }}</p>
             </div>
             <i class="fas fa-angle-right"></i>
           </div>
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import PeopleCheckout from '@/components/PeopleCheckout'
 import ItemCheckout from '@/components/ItemCheckout'
 import ShoppingSummary from '@/components/ShoppingSummary'
@@ -70,7 +72,13 @@ export default {
     PeopleCheckout,
     ItemCheckout,
     ModalContainer
-  }
+  },
+  created () {
+    this.$store.dispatch('loadBank')
+  },
+  computed: mapState([
+    'bank'
+  ])
 }
 </script>
 

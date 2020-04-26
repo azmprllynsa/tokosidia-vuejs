@@ -30,13 +30,19 @@ export default new Vuex.Store({
     products: [],
     modalLogin: false,
     shipmentDetail: {},
-    totalAll: 0
+    totalAll: 0,
+    bank: [],
+    orderList: []
   },
   getters: {
     dataForm: state => state.dataForm,
     isLogin: () => {
       if (localStorage.token) return true
       else return false
+    },
+    filteredOrder (state) {
+      const filtered = state.orderList.filter(orderItem => parseInt(orderItem.user_id) === parseInt(state.peopleDetail.id))
+      return filtered
     }
   },
   mutations: {
@@ -94,6 +100,12 @@ export default new Vuex.Store({
     },
     SET_TOTAL_CHECKOUT (state, total) {
       state.totalAll = total
+    },
+    SET_ALL_BANK (state, bank) {
+      state.bank = bank
+    },
+    SET_ALL_ORDER (state, orderList) {
+      state.orderList = orderList
     }
   },
   actions: {
@@ -187,6 +199,22 @@ export default new Vuex.Store({
         .then(res => {
           console.log(passData)
           console.log(res)
+        })
+    },
+    loadBank ({ commit }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}bank`)
+        .then(res => {
+          const bank = res.data.data
+          commit('SET_ALL_BANK', bank)
+        })
+    },
+    loadOrderList ({ commit }) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}history`)
+        .then(res => {
+          const orderList = res.data.data
+          commit('SET_ALL_ORDER', orderList)
         })
     }
   },
