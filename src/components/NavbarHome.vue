@@ -61,7 +61,7 @@
               <router-link to="/people/12">
                 <div class="user">
                   <img src="@/assets/img/defaultphotouser.jpg">
-                  <p>Rahmat Hidayatullah</p>
+                  <p>{{ peopleDetail.fullname }}</p>
                 </div>
               </router-link>
             </div>
@@ -70,7 +70,7 @@
               <div class="box-user">
                 <img src="@/assets/img/defaultphotouser.jpg">
                 <div class="info-user">
-                  <h3>Rahmat Hidayatullah</h3>
+                  <h3>{{ peopleDetail.fullname }}</h3>
                   <p>Akun Terverifikasi</p>
                 </div>
               </div>
