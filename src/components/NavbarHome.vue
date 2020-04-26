@@ -58,7 +58,7 @@
               <router-link v-if="peopleDetail.role === '2'" :to="'/' + peopleDetail.seller_id">
                 <div class="shop">
                   <img src="@/assets/img/seller_no_logo_1.png">
-                  <p>{{ peopleDetail.store.name }}</p>
+                  <p>{{ peopleDetail.store[0].name || 'Nama Toko' }}</p>
                 </div>
               </router-link>
             </div>
@@ -186,7 +186,7 @@
         <div class="list-category__wrapper">
           <div class="list-category">
             <div v-for="(cat, i) in categoryList" :key="i" class="semi-a" @mouseenter="categoryActive(cat)" :class="{ 'category-active': cat.id === currentCategory.id }">
-              <a>{{ cat.name || '' }}</a>
+              <a @click="hoverCategory = false" >{{ cat.name || '' }}</a>
             </div>
             <!-- <div class="semi-a">
               <a>Buku</a>
@@ -203,12 +203,12 @@
             <div class="sub-category__body">
               <div v-for="(sc, i) in catActived.SubCategory" :key="i" class="list-sub-category">
                 <div class="list-sub-category__head">
-                  <div class="semi-a">
+                  <div @click="hoverCategory = false" class="semi-a">
                     <router-link to="/p/kategori/subkategori">{{ sc.name || '' }}</router-link>
                   </div>
                 </div>
                 <div v-for="(ssc, i) in sc.SubSubCategory" :key="i" class="list-sub-category__body">
-                  <div class="semi-a">
+                  <div @click="hoverCategory = false" class="semi-a">
                     <router-link to="/p/kategori/subkategori/subsubkategori">{{ ssc.name || '' }}</router-link>
                   </div>
                 </div>

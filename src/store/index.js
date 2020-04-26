@@ -25,6 +25,7 @@ export default new Vuex.Store({
     message: null,
     peopleDetail: {},
     productDetail: {},
+    sellerDetail: {},
     categoryList: [],
     products: [],
     modalLogin: false,
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     },
     SET_PEOPLE_DETAIL (state, peopleDetail) {
       state.peopleDetail = peopleDetail
+    },
+    SET_SELLER_DETAIL (state, sellerDetail) {
+      state.sellerDetail = sellerDetail
     },
     SET_PRODUCTS (state, products) {
       state.products = products
@@ -112,9 +116,16 @@ export default new Vuex.Store({
           commit('SET_PRODUCT_DETAIL', res.data.data)
         })
     },
-    loadProducts ({ commit }) {
+    loadSellerDetail ({ commit }, sellerId) {
       axios
-        .get(`${process.env.VUE_APP_URL_API}product/`)
+        .get(`${process.env.VUE_APP_URL_API}seller/${sellerId}`)
+        .then(res => {
+          commit('SET_SELLER_DETAIL', res.data.data)
+        })
+    },
+    loadProducts ({ commit }, limit) {
+      axios
+        .get(`${process.env.VUE_APP_URL_API}product?page=${limit || 20}`)
         .then(res => {
           const products = res.data.data
           commit('SET_PRODUCTS', products)
