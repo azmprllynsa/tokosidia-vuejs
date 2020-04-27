@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       btnText: 'Pilih Pembayaran',
-      paymentModal: true
+      paymentModal: false
     }
   },
   components: {
