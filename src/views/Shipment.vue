@@ -29,7 +29,7 @@
     </div>
     <ModalContainer @bg-clicked="paymentModal = false" v-show="paymentModal" widthModal="500px" class="payment-modal hidden">
       <div class="header">
-        <i @click="paymentModal = false" class="fas fa-times"></i>
+        <i @click="paymentModal = false" class="fas fa-times fa-2x"></i>
         <h3>Pilih Metode Pembayaran</h3>
       </div>
       <div class="main">
@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       btnText: 'Pilih Pembayaran',
-      paymentModal: false
+      paymentModal: true
     }
   },
   components: {
@@ -96,19 +96,46 @@ export default {
     .header {
       display: flex;
       flex-direction: row;
+      align-items: center;
+      h3 {
+        margin-left: 20px;
+        font-size: 14px;
+        font-weight: 700;
+      }
     }
     .main {
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
+      p {
+        font-size: 15px;
+      }
       .payment-choose {
+        margin-top: 10px;
+        padding: 20px 0;
+        cursor: pointer;
         .bank-item {
           display: flex;
           flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
           .bank-itself {
             display: flex;
             flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            p {
+              margin-left: 10px;
+              font-weight: 700;
+            }
           }
         }
+        hr {
+          margin: 20px 0 0 0;
+        }
+      }
+      .payment-choose:hover {
+        background-color: lightgray;
       }
     }
   }
