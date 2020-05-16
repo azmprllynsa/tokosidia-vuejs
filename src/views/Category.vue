@@ -43,14 +43,14 @@
         </div>
       </div>
       <div class="title-wrap-parent">
-        <div v-for="item in 5" :key="item" class="title-wrap">
+        <div v-for="category in categoryList" :key="category.id" class="title-wrap">
           <div class="title-category">
             <div class="title-name">
               <div class="upper-name">
-                <p>B</p>
+                <p>{{ category.name.split('')[0] }}</p>
               </div>
               <div class="bottom-name">
-                <p>Buku</p>
+                <p>{{ category.name }}</p>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
             <div class="content">
               <div class="head">
                 <div class="head-name">
-                  <div class="name">Book</div>
+                  <div class="name">{{ category.name }}</div>
                 </div>
                 <div class="head-img">
                   <div class="image-head">
@@ -67,147 +67,12 @@
                 </div>
               </div>
               <div class="content-wrap">
-                <div class="content-category">
+                <div v-for="(sc, i) in category.SubCategory" :key="i" class="content-category">
                   <div class="category-title">
-                    <p>Arsitektur & Desain</p>
+                    <p>{{ sc.name }}</p>
                   </div>
                   <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
-                  </div>
-                </div>
-                <div class="content-category">
-                  <div class="category-title">
-                    <p>Arsitektur & Desain</p>
-                  </div>
-                  <div class="category-list">
-                    <p>Buku Bangunan</p>
-                    <p>Buku Tidur</p>
-                    <p>Buku Tidur Bangun</p>
-                    <p>Buku Bangun Tidur</p>
-                    <p>Tidur Bangun Buku</p>
-                    <p>Bangun Tidur Buku</p>
+                    <p v-for="(ssc, i) in sc.SubSubCategory" :key="i" >{{ ssc.name }}</p>
                   </div>
                 </div>
               </div>
@@ -219,8 +84,18 @@
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex'
 
+export default {
+  name: 'Category',
+  created () {
+    this.$store.dispatch('categoryList')
+  },
+  computed: {
+    ...mapState([
+      'categoryList'
+    ])
+  }
 }
 </script>
 
@@ -229,15 +104,18 @@ export default {
   // background-color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
+  padding-top: 1px;
   // justify-content: space-between;
   .category-wrap{
-    // background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
+    z-index: 2;
+    // box-shadow: 2px 2px 2px rgb(224, 224, 224);
     .list-category{
       // background-color: brown;
       width: 100%;
@@ -307,6 +185,8 @@ export default {
   .title-wrap-parent{
     padding-top: 50px;
     padding-bottom: 100px;
+    margin-top: 100px;
+    // background-color: black;
   }
   .title-wrap{
     display: flex;
@@ -337,6 +217,7 @@ export default {
         // background-color: darkgray;
         width: 100%;
         height: 25px;
+        cursor: pointer;
         p{
           color: rgb(13, 163, 28);
         }
@@ -364,21 +245,25 @@ export default {
       .head-name{
         // background-color: rgb(211, 180, 123);
         width: 120px;
-        height: 100%;
+        // height: 100%;
         padding-left: 40px;
-        padding-top: 65px;
+        padding-top: 60px;
+        cursor: pointer;
         .name{
           // background-color: teal;
-          width: 120px;
-          height: 50px;
+          width: 170px;
+          height: 70px;
           text-align: left;
-          font-size: 45px;
+          font-size: 30px;
           color: white;
+          position: relative;
+          font-weight: 600;
+          z-index: 2;
         }
       }
       .head-img{
         // background-color: rgb(202, 98, 79);
-        width: 200px;
+        // width: 200px;
         height: 100%;
         display: flex;
         padding-left: 65px;
@@ -404,6 +289,7 @@ export default {
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
+      cursor: pointer;
       // padding: 30px;
       .category-title{
         // background-color: cornflowerblue;

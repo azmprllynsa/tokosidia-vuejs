@@ -7,7 +7,7 @@
     <div class="flex-row status-group">
       <div class="status-first">
         <h3 class="text-bold text-md text-product-title">SanDisk Official</h3>
-        <p class="mt-10">(INV/20191105/XIX/XI/390327607)</p>
+        <p class="mt-10">(INV/{{ filteredOrder[0].invoice }})</p>
       </div>
       <hr class="hrthin">
       <div class="status-second flex-col justify-center ml-10">
@@ -16,8 +16,8 @@
       </div>
       <hr class="hrthin">
       <div class="status-third flex-col justify-center ml-10">
-        <p class="mt-5">Total Belanja</p>
-        <p class="text-red text-bold text-lg mt-5">Rp. 30000</p>
+        <p class="mt-5">Kurir</p>
+        <p class="text-red text-bold text-lg mt-5">{{ filteredOrder[0].shipping }}</p>
       </div>
     </div>
     <hr class="hrfull hrthin">
@@ -36,7 +36,7 @@
       <div class="ml-10 flex-row justify-between items-center buy-again">
         <div class="flex-col">
           <p>Total Harga Produk</p>
-          <p class="text-lg text-red text-bold mt-10">Rp.30000</p>
+          <p class="text-lg text-red text-bold mt-10">Rp.{{filteredOrder[0].grand_total}}</p>
         </div>
         <button class="btn-buy">Beli Lagi</button>
       </div>
@@ -51,8 +51,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'OrderedItem'
+  name: 'OrderedItem',
+  created () {
+    this.$store.dispatch('loadOrderList')
+  },
+  computed: {
+    filteredOrder () {
+      return this.$store.getters.filteredOrder
+    },
+    ...mapState([
+      'peopleDetail',
+      'orderList'
+    ])
+  }
 }
 </script>
 

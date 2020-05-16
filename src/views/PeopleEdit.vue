@@ -15,6 +15,11 @@ export default {
   components: {
     EditPeopleAside,
     EditPeopleMain
+  },
+  computed: {
+    idPeople () {
+      return this.$store.state.peopleDetail.id
+    }
   }
 }
 </script>

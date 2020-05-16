@@ -4,7 +4,7 @@
     <hr class="w-full mt-10 thinhr">
     <div class="mt-10 flex-row justify-between">
       <p class="text-gray">Total Harga</p>
-      <p class="text-bold">Rp. 1.000.000</p>
+      <p class="text-bold">Rp. {{ totalAll }}</p>
     </div>
     <slot></slot>
     <button class="mt-10 py-12 btn-promo text-green flex-row justify-center items-center">
@@ -16,7 +16,12 @@
 
 <script>
 export default {
-  name: 'ShoppingSummary'
+  name: 'ShoppingSummary',
+  computed: {
+    totalAll () {
+      return this.$store.state.totalAll
+    }
+  }
 }
 </script>
 

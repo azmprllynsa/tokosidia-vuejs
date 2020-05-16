@@ -23,38 +23,121 @@
               <span class="checkmark"></span>
             </label>
           </div>
-          <ShoppingSummaryBtn :btnText="btnText"/>
+          <ShoppingSummaryBtn @button-click="paymentModal = true" :btnText="btnText"/>
         </ShoppingSummary>
       </div>
     </div>
+    <ModalContainer @bg-clicked="paymentModal = false" v-show="paymentModal" widthModal="500px" class="payment-modal hidden">
+      <div class="header">
+        <i @click="paymentModal = false" class="fas fa-times fa-2x"></i>
+        <h3>Pilih Metode Pembayaran</h3>
+      </div>
+      <div class="main">
+        <p class="title">Pembayaran di Tokopedia</p>
+        <div v-for="item in bank" :key="item.id" class="payment-choose">
+          <div class="bank-item">
+            <div class="bank-itself">
+              <img src="https://ecs7.tokopedia.net/img/toppay/sprites/bca.png" width="40px" alt="">
+              <p>{{ item.bank_name }}</p>
+            </div>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </ModalContainer>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import PeopleCheckout from '@/components/PeopleCheckout'
 import ItemCheckout from '@/components/ItemCheckout'
 import ShoppingSummary from '@/components/ShoppingSummary'
 import ShoppingSummaryBtn from '@/components/ShoppingSummaryBtn'
+import ModalContainer from '@/components/ModalContainer'
+
 export default {
   name: 'Shipment',
   data () {
     return {
-      btnText: 'Pilih Pembayaran'
+      btnText: 'Pilih Pembayaran',
+      paymentModal: false
     }
   },
   components: {
     ShoppingSummary,
     ShoppingSummaryBtn,
     PeopleCheckout,
-    ItemCheckout
-  }
+    ItemCheckout,
+    ModalContainer
+  },
+  created () {
+    this.$store.dispatch('loadBank')
+  },
+  computed: mapState([
+    'bank'
+  ])
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/fblazt.scss';
 
+.hidden {
+  display: none;
+}
 .wrapper {
   padding: 50px 0;
+  .payment-modal {
+    display: flex;
+    flex-direction: column;
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      h3 {
+        margin-left: 20px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+    .main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      p {
+        font-size: 15px;
+      }
+      .payment-choose {
+        margin-top: 10px;
+        padding: 20px 0;
+        cursor: pointer;
+        .bank-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          .bank-itself {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            p {
+              margin-left: 10px;
+              font-weight: 700;
+            }
+          }
+        }
+        hr {
+          margin: 20px 0 0 0;
+        }
+      }
+      .payment-choose:hover {
+        background-color: lightgray;
+      }
+    }
+  }
 }
 </style>

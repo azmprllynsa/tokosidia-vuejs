@@ -11,7 +11,12 @@
         </ul>
         <hr>
       </nav>
-      <OrderedItem/>
+      <div v-if="filteredOrder.length === 0" class="no-order">
+        <img src="https://ecs7.tokopedia.net/assets-tokopedia-lite/v2/zeus/production/dd7dcb8c.png" width="200px" alt="">
+        <h1>Wah, ternyata kamu belum pernah beli apa apa nih</h1>
+        <router-link class="to-home" to="/">Buang duit yuk</router-link>
+      </div>
+      <OrderedItem v-if="filteredOrder.length !== 0"/>
     </div>
   </main>
 </template>
@@ -23,12 +28,38 @@ export default {
   name: 'OrderDetailMain',
   components: {
     OrderedItem
+  },
+  computed: {
+    filteredOrder () {
+      return this.$store.getters.filteredOrder
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/fblazt.scss';
+
+.no-order {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .to-home {
+    margin-top: 20px;
+    background-color: #56B54A;
+    padding: 20px 70px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+}
 
 .mt-50 {
   margin-top: 50px;
@@ -112,6 +143,9 @@ main {
         flex-direction: row;
         li {
           margin: 20px;
+        }
+        li:nth-child(1) {
+          color: #03AC0e;
         }
       }
     }

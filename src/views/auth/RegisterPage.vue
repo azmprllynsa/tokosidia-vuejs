@@ -75,7 +75,7 @@ export default {
     submitRegister () {
       this.$store.dispatch('submitRegister')
         .then(res => {
-          localStorage.token = res.data.data.token
+          localStorage.token = res.data.token
           this.$router.go('/')
         })
     }

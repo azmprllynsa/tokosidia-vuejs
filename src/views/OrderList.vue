@@ -30,6 +30,9 @@ export default {
     OrderDetailAside,
     OrderDetailMain,
     FloatingBtn
+  },
+  created () {
+    this.$store.dispatch('loadOrderList')
   }
 
 }

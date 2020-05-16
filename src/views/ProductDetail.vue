@@ -19,7 +19,7 @@
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <p>Nama Produk</p>
+          <p>{{ productDetail.name }}</p>
         </li>
       </ul>
     </div>
@@ -27,13 +27,13 @@
       <div class="product-img">
         <div class="product-img-wrapper">
           <div class="img-primary">
-            <img src="@/assets/img/contoh-img-product.jpg">
+            <img :src="productDetail.images[0] || require('@/assets/img/contoh-img-product.jpg')">
           </div>
           <div class="img-part">
-            <div class="img img-1">
-              <img src="@/assets/img/contoh-img-product.jpg">
+            <div v-for="(img, i) in productDetail.images" :key="i" class="img img-1">
+              <img :src="img || require('@/assets/img/contoh-img-product.jpg')">
             </div>
-            <div class="img img-2">
+            <!-- <div class="img img-2">
               <img src="@/assets/img/contoh-img-product.jpg">
             </div>
             <div class="img img-3">
@@ -44,7 +44,7 @@
             </div>
             <div class="img img-5">
               <img src="@/assets/img/contoh-img-product.jpg">
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -54,12 +54,12 @@
             <img src="@/assets/img/label-store-icon.svg">
             <p class="label-name">Official Store</p>
           </div>
-          <h2 class="product-name">Jeans ENERGIE Slim Fit Original 100% SALE</h2>
+          <h2 class="product-name">{{ productDetail.name }}</h2>
           <div class="product-score">
             <div class="score">
-              <p>4.8</p>
+              <p>{{ Math.ceil(parseInt(productDetail.rating) / 2) + '.0' }}</p>
               <div class="stars">
-                <img v-for="star in 5" :key="star" src="@/assets/img/star.png" alt="">
+                <img v-for="star in Math.ceil(parseInt(productDetail.rating) / 2)" :key="star" src="@/assets/img/star.png" alt="">
               </div>
               <p>(184)</p>
             </div>
@@ -95,7 +95,7 @@
               <p>Rp. 889.000</p>
             </div>
             <div class="price">
-              <p>Rp. 213.360</p>
+              <p>Rp. {{ productDetail.price || 0 }}</p>
             </div>
             <div class="price-guarantee">
               <img src="@/assets/img/rp-icon.svg">
@@ -111,7 +111,8 @@
             <p class="counter-label">Stok tersedia</p>
             <div class="counter">
               <div class="counter-box">
-                <img @click="decrement" :src="require(`@/assets/img/${nameCounter}.svg`)">
+                <img v-if="buttonEnabled" @click="decrement" :src="require(`@/assets/img/counter-minus.svg`)">
+                <img v-if="!buttonEnabled" @click="decrement" :src="require(`@/assets/img/counter-minus-disabled.svg`)">
                 <input v-model="amount" type="number" @input="toggleCounter">
                 <img @click="increment" src="@/assets/img/counter-plus.svg">
               </div>
@@ -130,11 +131,11 @@
           <div class="right-description">
             <div class="weight">
               <p>Berat</p>
-              <span>650gr</span>
+              <span>{{ productDetail.weight }}</span>
             </div>
             <div>
               <p>Kondisi</p>
-              <span>Baru</span>
+              <span>{{ productDetail.condition }}</span>
             </div>
             <div>
               <p>Asuransi</p>
@@ -174,40 +175,126 @@
       </div>
     </div>
     <div id="description">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam officiis numquam optio rerum maxime, dicta soluta repudiandae facere ipsa tempora! Eius, aliquid perferendis sunt nostrum tenetur veritatis! Corporis impedit cum distinctio natus? Magnam eum fuga autem suscipit fugit debitis officia quis sapiente vero expedita totam delectus, eveniet in eius neque ea cupiditate voluptas maxime molestiae esse quaerat architecto ab modi facere. Corrupti aperiam consectetur iusto quam doloremque a officiis! Molestias optio explicabo facilis nam amet enim placeat magni unde. Quo, perferendis dolor numquam sint fugit quisquam excepturi quasi ab pariatur soluta dolore ad debitis modi eum nobis inventore atque?<br></p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam officiis numquam optio rerum maxime, dicta soluta repudiandae facere ipsa tempora! Eius, aliquid perferendis sunt nostrum tenetur veritatis! Corporis impedit cum distinctio natus? <br></p>
+      <p>{{ productDetail.description }}</p>
+    </div>
+    <div class="navbar-bottom">
+      <div class="navbar-bottom-wrapper">
+        <div class="store-detail">
+          <div class="group-store-name">
+            <img src="@/assets/img/seller_no_logo_1.png">
+            <div class="store-name">
+              <router-link class="group-name" :to="'/' + sellerDetail.id">
+                <h1>{{ sellerDetail.name }}</h1>
+                <img src="@/assets/img/gold-4.gif">
+              </router-link>
+              <div class="store-info">
+                <span>{{ sellerDetail.address }}</span>
+                <span class="dot-small">&#8226;</span>
+                <span>Aktfi 7 jam yang lalu</span>
+                <span class="dot-small">&#8226;</span>
+                <span>Dibalas &plusmn; 2 menit</span>
+              </div>
+            </div>
+          </div>
+          <button @click="follow" >Ikuti</button>
+        </div>
+        <div class="checkout-info">
+          <div class="total">
+            <p>Total</p>
+            <h2>Rp. {{ totalPrice || 0 }}</h2>
+          </div>
+          <button @click="wishlist" class="love-flat"><img src="@/assets/img/love-flat.svg"></button>
+          <button @click="shipment" class="putih-oren">Beli</button>
+          <button @click="cart" class="oren-putih">Tambah Ke Keranjang</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Axios from 'axios'
 
 export default {
   name: 'product-detail',
   data () {
     return {
       dropVoucher: false,
-      amount: 0,
-      nameCounter: 'counter-minus-disabled',
-      etalaseDrop: false
+      amount: 1,
+      buttonEnabled: false,
+      etalaseDrop: false,
+      productDetail: {},
+      sellerDetail: {}
+    }
+  },
+  computed: {
+    totalPrice () {
+      return parseInt(this.productDetail.price) * this.amount
     }
   },
   components: {
   },
   methods: {
     decrement () {
-      if (this.amount <= 0) return
+      if (this.amount <= 1) {
+        this.amount = 1
+        return
+      }
       this.amount--
       this.toggleCounter()
     },
     increment () {
+      if (this.amount >= this.productDetail.stock_product) {
+        this.amount = this.productDetail.stock_product
+        return
+      }
       this.amount++
       this.toggleCounter()
     },
     toggleCounter () {
-      if (this.amount <= 0) this.nameCounter = 'counter-minus-disabled'
-      else this.nameCounter = 'counter-minus'
+      if (this.amount <= 1) this.buttonEnabled = false
+      else this.buttonEnabled = true
+    },
+    follow () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+    },
+    cart () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+      else this.$router.push('/cart')
+    },
+    shipment () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+      else {
+        const dataShipment = {
+          amount: this.amount,
+          totalPrice: parseInt(this.productDetail.price) * this.amount,
+          totalWeight: parseInt(this.productDetail.weight.match(/[0-9]/g).join('')) * this.amount,
+          product: this.productDetail,
+          store: this.sellerDetail
+        }
+        this.$store.commit('MOVE_TO_SHIPMENT', dataShipment)
+        this.$router.push('/cart/shipment')
+      }
+    },
+    wishlist () {
+      if (!this.$store.getters.isLogin) this.$store.state.modalLogin = true
+    },
+    getProductDetail () {
+      Axios.get(`${process.env.VUE_APP_URL_API}product/${this.$route.params.idProduct}`)
+        .then(res => {
+          this.productDetail = res.data.data
+        })
+    },
+    getSellerDetail () {
+      Axios.get(`${process.env.VUE_APP_URL_API}seller/${this.$route.params.idStore}`)
+        .then(res => {
+          this.sellerDetail = res.data.data
+        })
     }
+  },
+  created () {
+    this.getProductDetail()
+    this.getSellerDetail()
   }
 }
 </script>
@@ -546,6 +633,122 @@ export default {
   border-bottom: 2px solid #03ac0e;
   p {
     color: #03ac0e;
+  }
+}
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.163);
+  z-index: 1;
+  background-color: white;
+  overflow: hidden;
+  .navbar-bottom-wrapper, .store-detail, .checkout-info, .group-store-name, .store-info {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .navbar-bottom-wrapper {
+    width: 1200px;
+    height: 100%;
+    margin: auto;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      font-size: 14px;
+      font-weight: bold;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 8px;
+    }
+  }
+  .group-store-name {
+    img {
+      height: 60px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+  }
+  .store-name {
+    flex-direction: column;
+    .group-name {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      height: 17px;
+      h1 {
+        font-size: 14px;
+        color: #03ac0e;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-right: 5px;
+      }
+      img {
+        height: 18px;
+        object-fit: cover;
+      }
+    }
+    .store-info {
+      span {
+        font-size: 9.8px;
+        color: rgba(0, 0, 0, 0.497);
+        &.dot-small {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+  .store-detail {
+    justify-content: space-between;
+    flex-grow: .2;
+    button {
+      border: none;
+      color: white;
+      background-color: #03ac0e;
+    }
+  }
+  .checkout-info {
+    margin-left: 30px;
+    .total {
+      margin-right: 20px;
+      p {
+        font-size: 12px;
+        font-weight: bold;
+        color: rgb(125, 125, 125);
+        margin-bottom: 4px;
+      }
+      h2 {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+    button {
+      margin-left: 14px;
+    }
+    .love-flat {
+      border: .9px solid rgba(0, 0, 0, .3);
+      display: flex;
+      align-items: center;
+      img {
+        height: 23px;
+      }
+    }
+    .putih-oren {
+      background-color: white;
+      color: #DC4E1A;
+      border: .9px solid #DC4E1A;
+      min-width: 90px;
+    }
+    .oren-putih {
+      background-color: #DC4E1A;
+      border: none;
+      color: white;
+    }
   }
 }
 </style>

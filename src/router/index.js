@@ -17,6 +17,7 @@ import PeopleEdit from '@/views/PeopleEdit.vue'
 import Listcategory from '@/views/Listcategory.vue'
 import Subcategory from '@/views/Subcategory.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
+import AddProduct from '@/views/AddProduct.vue'
 
 Vue.use(VueRouter)
 
@@ -26,8 +27,15 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia',
-      requiresAuth: true
+      title: 'Situs Jual Beli Online Kurang Terpercaya | Tokosidia'
+    }
+  },
+  {
+    path: '/pagenotfound',
+    name: 'Page Not Found',
+    component: PageNotFound,
+    meta: {
+      title: 'Halaman Tidak Ditemukan | Tokosidia'
     }
   },
   {
@@ -35,8 +43,7 @@ const routes = [
     name: 'Confirmation',
     component: Confirm,
     meta: {
-      title: 'Confirmation Email | Tokosidia',
-      requiresAuth: true
+      title: 'Confirmation Email | Tokosidia'
     }
   },
   {
@@ -62,8 +69,7 @@ const routes = [
     name: 'Search',
     component: Search,
     meta: {
-      title: 'Jual | Tokosidia',
-      requiresAuth: true
+      title: 'Jual | Tokosidia'
     }
   },
   {
@@ -74,7 +80,6 @@ const routes = [
       title: 'Keranjang | Tokosidia',
       requiresAuth: true
     }
-
   },
   {
     path: '/cart/shipment',
@@ -91,26 +96,23 @@ const routes = [
     name: 'Category',
     component: Category,
     meta: {
-      title: 'Daftar Produk | Tokosidia',
-      requiresAuth: true
+      title: 'Daftar Produk | Tokosidia'
     }
   },
   {
-    path: '/p/:listcategory',
+    path: '/p/:idC',
     name: 'Listcategory',
     component: Listcategory,
     meta: {
-      title: 'Jual | Tokosidia',
-      requiresAuth: true
+      title: 'Jual | Tokosidia'
     }
   },
   {
-    path: '/p/:listcategory/:subcategory',
+    path: '/p/:idC/:idSC',
     name: 'Subcategory',
     component: Subcategory,
     meta: {
-      title: ' Jual | Tokosidia',
-      requiresAuth: true
+      title: ' Jual | Tokosidia'
     }
   },
   {
@@ -123,16 +125,15 @@ const routes = [
     }
   },
   {
-    path: '/people/:id',
+    path: '/people/:idPeople',
     name: 'People',
     component: People,
     meta: {
-      title: 'User Detail | Tokosidia',
-      requiresAuth: true
+      title: 'User Detail | Tokosidia'
     }
   },
   {
-    path: '/people/:id/edit',
+    path: '/people/:idPeople/edit',
     name: 'PeopleEdit',
     component: PeopleEdit,
     meta: {
@@ -141,21 +142,28 @@ const routes = [
     }
   },
   {
-    path: '/:storename',
-    name: 'Store Detail',
-    component: StoreDetail,
+    path: '/people/:idPeople/add-product',
+    name: ' Add Product',
+    component: AddProduct,
     meta: {
-      title: 'Rincian Toko | Tokosidia',
+      title: 'Add Product | Tokosidia',
       requiresAuth: true
     }
   },
   {
-    path: '/:storename/:productname',
+    path: '/:idStore',
+    name: 'Store Detail',
+    component: StoreDetail,
+    meta: {
+      title: 'Rincian Toko | Tokosidia'
+    }
+  },
+  {
+    path: '/:idStore/:idProduct',
     name: 'Product Detail',
     component: ProductDetail,
     meta: {
-      title: 'Rincian Produk | Tokosidia',
-      requiresAuth: true
+      title: 'Rincian Produk | Tokosidia'
     }
   },
   {
@@ -163,8 +171,7 @@ const routes = [
     name: 'Page Not Found',
     component: PageNotFound,
     meta: {
-      title: 'Halaman Tidak Ditemukan | Tokosidia',
-      requiresAuth: true
+      title: 'Halaman Tidak Ditemukan | Tokosidia'
     }
   }
 ]

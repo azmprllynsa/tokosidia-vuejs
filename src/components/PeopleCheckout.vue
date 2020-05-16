@@ -6,15 +6,15 @@
     </div>
     <div class="mt-10">
       <div class="flex-row items-center">
-        <p class="text-bold text-md">Firman</p>
+        <p class="text-bold text-md">{{ peopleDetail.fullname }}</p>
         <p class="ml-5">(Alamat Rumah)</p>
         <p class="ml-5 badge-green text-bold">Utama</p>
       </div>
       <div class="mt-10">
-        62895605483230
+        {{ peopleDetail.phone_number }}
       </div>
       <div class="mt-10 text-soft-gray text-md">
-        Jalan jalan di tengah kota dikala corona
+        {{ peopleDetail.address }}
       </div>
     </div>
     <hr class="hrthin mt-15">
@@ -27,8 +27,13 @@
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex'
 
+export default {
+  name: 'PeopleCheckout',
+  computed: mapState([
+    'peopleDetail'
+  ])
 }
 </script>
 

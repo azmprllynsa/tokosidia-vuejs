@@ -3,17 +3,17 @@
     <div class="header">
       <div class="header-wrapper">
         <div class="header-img">
-          <img src="@/assets/img/contoh-header-img.jpg">
+          <img src="@/assets/img/seller_no_cover_0.png">
         </div>
         <div class="header-info">
           <div class="info-wrapper">
             <div class="store-info1">
               <div class="profile-photo">
-                <img src="@/assets/img/contoh-foto-profil.jpg">
+                <img src="@/assets/img/seller_no_logo_1.png">
               </div>
               <div class="detail">
                 <div class="store-name">
-                  <h2>Vengoz</h2>
+                  <h2>{{ sellerDetail.name }}</h2>
                   <div class="gold">
                     <img src="@/assets/img/gold-4.gif">
                   </div>
@@ -27,7 +27,7 @@
                   </div>
                   <div class="location">
                     <img src="">
-                    <p>Jakarta Utara</p>
+                    <p>{{ sellerDetail.address }}</p>
                   </div>
                   <div class="followers">
                     <p>62.8K Followers</p>
@@ -57,11 +57,7 @@
                 <div class="score-quality">
                   <div class="score-number">4.8</div>
                   <div class="score-stars">
-                    <img src="@/assets/img/star.png">
-                    <img src="@/assets/img/star.png">
-                    <img src="@/assets/img/star.png">
-                    <img src="@/assets/img/star.png">
-                    <img src="@/assets/img/star.png">
+                    <img v-for="(star, i) in 5" :key="i + 1" src="@/assets/img/star.png">
                   </div>
                   <span>(8242 Ulasan)</span>
                 </div>
@@ -106,11 +102,11 @@
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <router-link to="/">Vengoz</router-link>
+          <router-link :to="'/' + sellerDetail.id">{{ sellerDetail.name }}</router-link>
           <img src="@/assets/img/arrow-triangle.png">
         </li>
         <li>
-          <p>Produk</p>
+          <p>Ulasan</p>
         </li>
       </ul>
     </div>
@@ -208,86 +204,7 @@
           <h2>Semua Produk</h2>
         </div>
         <div class="products">
-          <div v-for="(item, i) in 3" :key="i" class="card-product">
-            <router-link :to="`/${$route.params.storename}/namaproduk`">
-              <div class="whitelist">
-                <div class="love">
-                  <img src="">
-                </div>
-              </div>
-              <div class="card-wrap">
-                <div class="card-img">
-                  <img src="@/assets/img/contoh-img-product.jpg">
-                </div>
-                <div class="card-body">
-                  <div class="super"
-                       :style="{ backgroundImage: `url(${require('@/assets/img/unggulan.png')})` }">
-                    <span class="unggulan">Produk Unggulan</span>
-                    <span class="title-product">Jeans ENERGIE Slim Fit Original 100% SALE</span>
-                    <div class="prices">
-                      <div class="discount">
-                        <div class="discount-number" >76%</div>
-                        <div class="discount-price">Rp. 889.000</div>
-                      </div>
-                      <div class="product-price">
-                        <span>Rp. 213.360</span>
-                      </div>
-                    </div>
-                    <div class="rating">
-                      <div class="stars">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                      </div>
-                      <span class="testimo-total">(183)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </router-link>
-          </div>
-          <div v-for="(item, i) in 40" :key="i + 3" class="card-product">
-            <router-link :to="`/${$route.params.storename}/namaproduk`">
-              <div class="whitelist">
-                <div class="love">
-                  <img src="">
-                </div>
-              </div>
-              <div class="card-wrap">
-                <div class="card-img">
-                  <img src="@/assets/img/contoh-img-product.jpg">
-                </div>
-                <div class="card-body">
-                  <div class="common"
-                       :style="{ backgroundImage: `url(${require('@/assets/img/unggulan.png')})` }">
-                    <!-- <span class="unggulan">Produk Unggulan</span> -->
-                    <span class="title-product">Jeans ENERGIE Slim Fit Original 100% SALE</span>
-                    <div class="prices">
-                      <div class="discount">
-                        <div class="discount-number" >76%</div>
-                        <div class="discount-price">Rp. 889.000</div>
-                      </div>
-                      <div class="product-price">
-                        <span>Rp. 213.360</span>
-                      </div>
-                    </div>
-                    <div class="rating">
-                      <div class="stars">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                        <img src="@/assets/img/star.png">
-                      </div>
-                      <span class="testimo-total">(183)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </router-link>
-          </div>
+          <CardProduct v-for="(card, i) in sellerDetail.myProduct" :key="i" :data="card" :idSeller="sellerDetail.id" />
         </div>
         <div class="pagination-limit">
           <div class="limit">
@@ -315,6 +232,7 @@
 </template>
 
 <script>
+import CardProduct from '@/components/CardProduct.vue'
 
 export default {
   name: 'store-detail',
@@ -324,6 +242,16 @@ export default {
     }
   },
   components: {
+    CardProduct
+  },
+  created () {
+    this.$store.dispatch('loadProducts')
+    this.$store.dispatch('loadSellerDetail', this.$route.params.idStore)
+  },
+  computed: {
+    sellerDetail () {
+      return this.$store.state.sellerDetail
+    }
   }
 }
 </script>
@@ -737,114 +665,6 @@ export default {
     .products {
       display: flex;
       flex-wrap: wrap;
-      .card-product {
-        width: 176px;
-        height: 342px;
-        margin: 0 7px 10px 0;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.122);
-        border-radius: 8px 8px 3px 3px;
-        overflow: hidden;
-        a {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          .whitelist {
-            position: absolute;
-          }
-          .card-wrap {
-            .card-img {
-              width: 100%;
-              height: 176px;
-              overflow: hidden;
-              img {
-                object-fit: cover;
-                width: 100%;
-                background-position: center;
-              }
-            }
-            .card-body {
-              width: 100%;
-              height: 342px - 176px;
-              .super {
-                padding: 8px;
-                width: 100%;
-                height: 100%;
-                line-height: 1.3;
-                background-position: top center;
-                background-size: contain;
-                background-repeat: no-repeat;
-              }
-              .common {
-                padding: 8px;
-                width: 100%;
-                height: 100%;
-                line-height: 1.3;
-                background-position: top center;
-                background-size: 0;
-                background-repeat: no-repeat;
-              }
-              .unggulan {
-                font-size: 10px;
-                font-weight: bold;
-                color: #03ac0e;
-                display: flex;
-                flex-direction: column;
-                line-height: 1.7;
-              }
-              .title-product {
-                font-size: 14px;
-                font-weight: 600;
-                color: rgba(0, 0, 0, 0.7);
-              }
-              .prices {
-                .discount {
-                  display: flex;
-                  align-items: center;
-                  margin: 4px 0;
-                  .discount-number {
-                    font-size: 10px;
-                    font-weight: bold;
-                    background-color: #FFEAEF;
-                    color: #FF5C8F;
-                    padding: 2px 4px;
-                    border-radius: 3px;
-                  }
-                  .discount-price {
-                    margin-left: 4px;
-                    font-size: 10px;
-                    color: rgb(191, 191, 191);
-                    text-decoration: line-through;
-                  }
-                }
-                .product-price {
-                  span {
-                    font-size: 14px;
-                    font-weight: bold;
-                    color: #FA591D;
-                  }
-                }
-              }
-              .rating {
-                display: flex;
-                align-items: center;
-                margin: 4px 0;
-                .stars {
-                  display: flex;
-                  align-items: center;
-                  img {
-                    width: 14px;
-                    margin: 0.5px;
-                  }
-                }
-                span {
-                  margin-left: 2px;
-                  color:rgb(177, 177, 177);
-                }
-              }
-            }
-          }
-        }
-      }
     }
     .pagination-limit {
       margin-top: 16px;
