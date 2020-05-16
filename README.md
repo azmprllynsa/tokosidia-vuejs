@@ -1,7 +1,13 @@
 # Tokosidia
 
+![GitHub repo size](https://img.shields.io/github/repo-size/HiRahmat-Dev/tokosidia-vuejs)
+![GitHub contributors](https://img.shields.io/github/contributors/HiRahmat-Dev/tokosidia-vuejs)
+![GitHub stars](https://img.shields.io/github/stars/HiRahmat-Dev/tokosidia-vuejs?style=social)
+![GitHub forks](https://img.shields.io/github/forks/HiRahmat-Dev/tokosidia-vuejs?style=social)
+![Tweet](https://img.shields.io/twitter/url?style=social)
+
 <p align="center">
-  <img height="90" src="./images/tokosidia-logo.png"/>
+  <img height="90" src="./images/tokosidia-logo.png"/>&nbsp;
   <img height="100" src="https://vuejs.org/images/logo.png">
 </p>
 <p align="center">
@@ -41,7 +47,7 @@
 ## Create Environment Variable
 
 ```
-$ cp .env.local .env
+$ touch .env.local
 $ nano .env.local
 ```
 
@@ -68,7 +74,6 @@ VUE_APP_SECRET_KEY_TOKEN=YOUR_API_KEY
 
 ## Related Project (Backend)
 
-* [`Frontend-Tokosidia-VueJS`](https://github.com/HiRahmat-Dev/tokosidia-vuejs)
 * [`Backend-Tokosidia`](https://github.com/HiRahmat-Dev/tokosidia-API)
 
 ## Contributors
