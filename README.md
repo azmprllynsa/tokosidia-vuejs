@@ -1,4 +1,4 @@
-# Tokosidia
+# Tokosidia (CLONE Tokopedia)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/HiRahmat-Dev/tokosidia-vuejs)
 ![GitHub contributors](https://img.shields.io/github/contributors/HiRahmat-Dev/tokosidia-vuejs)
