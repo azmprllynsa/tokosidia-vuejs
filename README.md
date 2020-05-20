@@ -1,4 +1,4 @@
-# Tokosidia (CLONE Tokopedia)
+<h1 align="center">Tokosidia Frontend (Inspired by Tokopedia)</h1>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/HiRahmat-Dev/tokosidia-vuejs)
 ![GitHub contributors](https://img.shields.io/github/contributors/HiRahmat-Dev/tokosidia-vuejs)
