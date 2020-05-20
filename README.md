@@ -4,8 +4,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/HiRahmat-Dev/tokosidia-vuejs)
 ![GitHub stars](https://img.shields.io/github/stars/HiRahmat-Dev/tokosidia-vuejs?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/HiRahmat-Dev/tokosidia-vuejs?style=social)
-![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FHiRahmat-Dev%2Ftokosidia-vuejs
-)
 
 <p align="center">
   <img height="90" src="./images/tokosidia-logo.png"/>&nbsp;
@@ -18,48 +16,44 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Requirements](#requirements)
-- [Usage](#usage-for-development)
-- [Create Environment Variable](#create-environment-variable)
+- [Prerequiste](#prerequiste)
+- [Installation](#installation)
 - [Screenshots](#screenshots)
 - [Related Project](#related-project-backend)
 - [Contributors](#contributors)
 
-## Features
 
+## Features
 - Users who are not logged in can only view the product
 - Users must sign up and sign in to make a transaction and see their profiles
 - And others
 
-## Requirements
+
+## Prerequiste
 
 - Node.js - Download and Install [Node.js](https://nodejs.org/en/).
 - Vue.js - Download and Install [Vue.js](https://vuejs.org/v2/guide/)
 
-## Usage for development
 
-1. Open your terminal or command prompt
-2. Type `git clone https://github.com/HiRahmat-Dev/tokosidia-vuejs.git`
-3. Open the folder and type `npm install` for install dependencies
-4. Create Environment Variable [here](#create-environment-variable)
-5. Before run this, you must run backend first
-6. Type `npm run serve` for run this app.
-
-## Create Environment Variable
-
+## Installation
+### Clone
 ```
-$ touch .env.local
-$ nano .env.local
+$ git clone https://github.com/azmprllynsa/tokosidia-vuejs.git
+$ cd tokosidia-vuejs
+$ npm install
 ```
-
+### Create Environment Variable
 ```
 # Set API KEY
-VUE_APP_URL_API=YOUR_HOST_URL
-VUE_APP_SECRET_KEY_TOKEN=YOUR_API_KEY
+VUE_APP_API=YOUR_HOST_URL
+VUE_APP_SECRET_KEY_TOKEN=YOUR_SECRET_KEY
+```
+### Start Development Server
+```
+$ npm run serve
 ```
 
 ## Screenshots
-
 <div align="center">
     <img width="430" src="./images/login.jpg">   
     <img width="430" src="./images/register.jpg">
@@ -73,9 +67,9 @@ VUE_APP_SECRET_KEY_TOKEN=YOUR_API_KEY
     <img width="430" src="./images/tokosidia-user-detail.gif">
 </div>
 
-## Related Project (Backend)
 
-* [`Backend-Tokosidia`](https://github.com/HiRahmat-Dev/tokosidia-API)
+## Related Project (Backend)
+* [`Backend Tokosidia`](https://github.com/azmprllynsa/tokosidia-API)
 
 ## Contributors
 
@@ -115,3 +109,7 @@ VUE_APP_SECRET_KEY_TOKEN=YOUR_API_KEY
     </tr>
   </table>
 </center>
+
+
+---
+Copyright © 2020 [Azmi Prilly Naisa](https://github.com/azmprllynsa/)
